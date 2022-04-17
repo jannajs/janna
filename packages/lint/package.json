@@ -1,0 +1,34 @@
+{
+  "name": "@jannajs/lint",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf dist && tsup src/config.ts src/configBin.ts src/index.ts --format cjs,esm --dts",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "lint-config": "bin/config.js"
+  },
+  "dependencies": {
+    "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.24",
+    "@types/semver": "^7.3.9",
+    "@umijs/fabric": "^2.10.2",
+    "chalk": "^5.0.1",
+    "eslint": "^7",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "@jannajs/tsconfig": "workspace:*",
+    "typescript": "^4.6.3"
+  }
+}

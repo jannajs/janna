@@ -1,0 +1,16 @@
+{
+  "name": "janna-monorepo",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "tsup": "^5.12.5",
+    "turbo": "^1.2.4"
+  }
+}
