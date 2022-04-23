@@ -12,5 +12,8 @@
     "rimraf": "^3.0.2",
     "tsup": "^5.12.5",
     "turbo": "^1.2.4"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.22.0"
   }
 }
