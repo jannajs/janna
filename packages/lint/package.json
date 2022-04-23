@@ -1,6 +1,6 @@
 {
   "name": "@jannajs/lint",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsup src/config.ts src/configBin.ts src/index.ts --format cjs,esm --dts",
