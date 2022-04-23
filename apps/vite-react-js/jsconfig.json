@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": ["src/**/*.jsx", "src/**/*.js", "*.js"],
+  "exclude": ["node_modules", "dist"]
+}
