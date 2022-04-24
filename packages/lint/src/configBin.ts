@@ -6,7 +6,6 @@ import {
   generateEditorConfig,
   generatePrettierConfig,
   generateESLintConfig,
-  checkESLintDeps,
 } from './config'
 
 function start() {
@@ -22,7 +21,6 @@ function start() {
       '[janna:lint] Generate prettier config `.prettierrc.yaml` successful.',
     ),
   )
-  checkESLintDeps()
   generateESLintConfig()
   console.log(
     chalk.green(

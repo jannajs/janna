@@ -1,5 +1,9 @@
 {
   "extends": "@jannajs/tsconfig/node.json",
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["ES5"]
+  },
   "include": ["src"],
   "exclude": ["dist", "build", "node_modules", "**/*.js"]
 }
