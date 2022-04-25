@@ -5,3 +5,4 @@ dist
 **/dist
 .next/**
 **/*.log
+apps/vite-react-ts/.husky

@@ -8,7 +8,7 @@
     "module": "commonjs",
     "declaration": true,
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
