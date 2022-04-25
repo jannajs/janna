@@ -6,29 +6,44 @@ import {
   generateEditorConfig,
   generatePrettierConfig,
   generateESLintConfig,
+  installLintStage,
+  configureLintStaged,
 } from './config'
 
-function start() {
+async function start() {
   generateEditorConfig()
   console.log(
-    chalk.green(
-      '[janna:lint] Generate editor config `.editorconfig` successful.',
-    ),
-  )
-  generatePrettierConfig()
-  console.log(
-    chalk.green(
-      '[janna:lint] Generate prettier config `.prettierrc.yaml` successful.',
-    ),
-  )
-  generateESLintConfig()
-  console.log(
-    chalk.green(
-      '[janna:lint] Generate eslint config `.eslintrc.yaml` successful.',
-    ),
+    chalk.green('[janna:lint]'),
+    chalk.bold('Generate editor config `.editorconfig` done'),
   )
 
+  generatePrettierConfig()
+  console.log(
+    chalk.green('[janna:lint]'),
+    chalk.bold('Generate prettier config `.prettierrc.yaml` done'),
+  )
+
+  generateESLintConfig()
+  console.log(
+    chalk.green('[janna:lint]'),
+    chalk.bold('Generate eslint config `.eslintrc.yaml` done'),
+  )
+
+  await installLintStage()
+  console.log(
+    chalk.green('[janna:lint]'),
+    chalk.bold('install lint-stage done'),
+  )
+
+  configureLintStaged()
+  console.log(
+    chalk.green('[janna:lint]'),
+    chalk.bold('configure lint-stage done'),
+  )
+
+  console.log('\n')
   console.log(chalk.bold(`${name} v${version}`))
+  console.log('\n')
 }
 
 start()

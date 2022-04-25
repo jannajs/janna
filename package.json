@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@jannajs/lint": "workspace:*",
+    "esno": "^0.14.1",
     "rimraf": "^3.0.2",
     "tsup": "^5.12.5",
     "turbo": "^1.2.4"
