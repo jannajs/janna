@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 0.0.4
+
+### Patch Changes
+
+- chore: udpate bin name
+
 ## 0.0.3
 
 ### Patch Changes
