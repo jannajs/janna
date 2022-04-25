@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 0.0.3
+
+### Patch Changes
+
+- fix: release config file
+
 ## 0.0.2
 
 ### Patch Changes
