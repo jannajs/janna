@@ -16,7 +16,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "bin": {
-    "lint-config": "bin/config.js"
+    "lint": "bin/config.js"
   },
   "dependencies": {
     "@umijs/fabric": "^2.10.2",
