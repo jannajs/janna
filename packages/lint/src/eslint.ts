@@ -41,71 +41,71 @@ const config: Linter.Config = {
     'import/namespace': 2,
     'import/default': 2,
     'import/export': 2,
-    'import/no-unresolved': [
-      2,
-      {
-        ignore: ['^virtual:windi.css$', '^unplugin-auto-import'],
-      },
-    ],
+    // 'import/no-unresolved': [
+    //   2,
+    //   {
+    //     ignore: ['^virtual:windi.css$', '^unplugin-auto-import'],
+    //   },
+    // ],
     // https://github.com/import-js/eslint-plugin-import/issues/1639
-    'import/order': [
-      'error',
-      {
-        pathGroups: [
-          {
-            pattern: '*.svg?component',
-            patternOptions: {
-              dot: true,
-              nocomment: true,
-              matchBase: true,
-            },
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '*.svg',
-            patternOptions: {
-              dot: true,
-              nocomment: true,
-              matchBase: true,
-            },
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/**/*.@(less|scss)',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: './**/*.@(less|scss)',
-            group: 'index',
-          },
-          {
-            pattern: '@/**',
-            group: 'internal',
-          },
-        ],
-        groups: [
-          'builtin',
-          'external',
-          'internal',
-          'parent',
-          'sibling',
-          'index',
-          'object',
-          'type',
-        ],
-        'newlines-between': 'always',
-        warnOnUnassignedImports: true,
-        alphabetize: {
-          // sort in ascending order. Options: ['ignore', 'asc', 'desc']
-          order: 'asc',
-          // ignore case. Options: [true, false]
-          caseInsensitive: false,
-        },
-      },
-    ],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     pathGroups: [
+    //       {
+    //         pattern: '*.svg?component',
+    //         patternOptions: {
+    //           dot: true,
+    //           nocomment: true,
+    //           matchBase: true,
+    //         },
+    //         group: 'internal',
+    //         position: 'after',
+    //       },
+    //       {
+    //         pattern: '*.svg',
+    //         patternOptions: {
+    //           dot: true,
+    //           nocomment: true,
+    //           matchBase: true,
+    //         },
+    //         group: 'internal',
+    //         position: 'after',
+    //       },
+    //       {
+    //         pattern: '@/**/*.@(less|scss)',
+    //         group: 'internal',
+    //         position: 'after',
+    //       },
+    //       {
+    //         pattern: './**/*.@(less|scss)',
+    //         group: 'index',
+    //       },
+    //       {
+    //         pattern: '@/**',
+    //         group: 'internal',
+    //       },
+    //     ],
+    //     groups: [
+    //       'builtin',
+    //       'external',
+    //       'internal',
+    //       'parent',
+    //       'sibling',
+    //       'index',
+    //       'object',
+    //       'type',
+    //     ],
+    //     'newlines-between': 'always',
+    //     warnOnUnassignedImports: true,
+    //     alphabetize: {
+    //       // sort in ascending order. Options: ['ignore', 'asc', 'desc']
+    //       order: 'asc',
+    //       // ignore case. Options: [true, false]
+    //       caseInsensitive: false,
+    //     },
+    //   },
+    // ],
     ...(isTsProject
       ? {
           '@typescript-eslint/no-this-alias': [
