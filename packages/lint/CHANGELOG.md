@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 0.0.5
+
+### Patch Changes
+
+- fix: babel dependencies
+
 ## 0.0.4
 
 ### Patch Changes
