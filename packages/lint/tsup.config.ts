@@ -7,7 +7,13 @@ fs.rmSync('dist', {
 })
 
 export default defineConfig({
-  entry: ['src/eslint.ts', 'src/config.ts', 'src/configBin.ts', 'src/index.ts'],
+  entry: [
+    'src/eslint.ts',
+    'src/eslint-import.ts',
+    'src/config.ts',
+    'src/configBin.ts',
+    'src/index.ts',
+  ],
   format: ['cjs', 'esm'],
   dts: true,
   onSuccess: 'esno scripts/copy.ts',
