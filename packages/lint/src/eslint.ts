@@ -1,4 +1,10 @@
+import fs from 'fs-extra'
 import type { Linter } from 'eslint'
+import path from 'path'
+
+const isTsProject = fs.existsSync(
+  path.join(process.cwd() || '.', './tsconfig.json'),
+)
 
 const config: Linter.Config = {
   extends: [
@@ -13,21 +19,23 @@ const config: Linter.Config = {
   ],
   // https://github.com/import-js/eslint-plugin-import#installation
   plugins: ['import'],
-  settings: {
-    // https://github.com/alexgorbatchev/eslint-import-resolver-typescript#configuration
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      typescript: {
-        // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-        alwaysTryTypes: 'true,',
-        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
-        // use <root>/path/to/folder/tsconfig.json
-        project: './',
-      },
-    },
-  },
+  settings: isTsProject
+    ? {
+        // https://github.com/alexgorbatchev/eslint-import-resolver-typescript#configuration
+        'import/parsers': {
+          '@typescript-eslint/parser': ['.ts', '.tsx'],
+        },
+        'import/resolver': {
+          typescript: {
+            // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+            alwaysTryTypes: 'true,',
+            // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+            // use <root>/path/to/folder/tsconfig.json
+            project: './',
+          },
+        },
+      }
+    : {},
   rules: {
     'import/named': 2,
     'import/namespace': 2,
@@ -98,33 +106,37 @@ const config: Linter.Config = {
         },
       },
     ],
-    '@typescript-eslint/no-this-alias': [
-      'error',
-      {
-        // Disallow `const { props, state } = this`; true by default
-        allowDestructuring: false,
-        // Allow `const self = this`; `[]` by default
-        allowedNames: ['self'],
-      },
-    ],
-    '@typescript-eslint/no-empty-interface': [
-      0,
-      {
-        'import/no-named-as-default-member': 0,
-      },
-    ],
-    '@typescript-eslint/consistent-type-imports': [
-      1,
-      {
-        disallowTypeAnnotations: false,
-      },
-    ],
-    '@typescript-eslint/triple-slash-reference': [
-      0,
-      {
-        'no-unused-expressions': 'off',
-      },
-    ],
+    ...(isTsProject
+      ? {
+          '@typescript-eslint/no-this-alias': [
+            'error',
+            {
+              // Disallow `const { props, state } = this`; true by default
+              allowDestructuring: false,
+              // Allow `const self = this`; `[]` by default
+              allowedNames: ['self'],
+            },
+          ],
+          '@typescript-eslint/no-empty-interface': [
+            0,
+            {
+              'import/no-named-as-default-member': 0,
+            },
+          ],
+          '@typescript-eslint/consistent-type-imports': [
+            1,
+            {
+              disallowTypeAnnotations: false,
+            },
+          ],
+          '@typescript-eslint/triple-slash-reference': [
+            0,
+            {
+              'no-unused-expressions': 'off',
+            },
+          ],
+        }
+      : {}),
   },
 }
 

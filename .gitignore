@@ -6,3 +6,4 @@ dist
 .next/**
 **/*.log
 apps/vite-react-ts/.husky
+apps/vite-react-jss/.husky
