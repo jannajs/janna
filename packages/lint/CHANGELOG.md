@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 0.0.7
+
+### Patch Changes
+
+- feat: extract eslint-import rules
+
 ## 0.0.6
 
 ### Patch Changes
