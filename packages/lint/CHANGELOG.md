@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 0.0.6
+
+### Patch Changes
+
+- feat: distinguish ts/js project
+
 ## 0.0.5
 
 ### Patch Changes
