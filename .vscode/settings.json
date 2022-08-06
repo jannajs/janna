@@ -1,3 +1,4 @@
 {
-  "eslint.workingDirectories": ["./packages/lint", "./apps/vite-react-ts", "./apps/vite-react-js"]
+  "eslint.workingDirectories": ["./packages/lint"],
+  "eslint.debug": true
 }

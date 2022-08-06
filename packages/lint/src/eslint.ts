@@ -1,84 +1,26 @@
 import type { Linter } from 'eslint'
 
 const config: Linter.Config = {
-  extends: [
-    // https://github.com/umijs/fabric/blob/master/src/eslint.ts
-    require.resolve('@umijs/fabric/dist/eslint'),
-    // https://github.com/import-js/eslint-plugin-import#typescript
-    'plugin:import/recommended',
-    'plugin:import/typescript',
-    // https://prettier.io/docs/en/related-projects.html#eslint-integrations
-    // `eslint-config-prettier`, turns off all ESLint rules that are unnecessary or might conflict with Prettier
-    'prettier',
-  ],
-  // https://github.com/import-js/eslint-plugin-import#installation
-  plugins: ['import'],
-  settings: {
-    // https://github.com/alexgorbatchev/eslint-import-resolver-typescript#configuration
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/resolver': {
-      typescript: {
-        // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-        alwaysTryTypes: 'true,',
-        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
-        // use <root>/path/to/folder/tsconfig.json
-        project: './',
-      },
-    },
-  },
+  extends: ['@antfu', 'prettier'],
   rules: {
-    'import/named': 2,
-    'import/namespace': 2,
-    'import/default': 2,
-    'import/export': 2,
-    'import/no-unresolved': [
-      2,
-      {
-        ignore: ['^virtual:windi.css$', '^unplugin-auto-import'],
-      },
-    ],
-    // https://github.com/import-js/eslint-plugin-import/issues/1639
-    'import/order': [
+    '@typescript-eslint/no-this-alias': [
       'error',
       {
-        pathGroups: [
-          {
-            pattern: '*.svg?component',
-            patternOptions: {
-              dot: true,
-              nocomment: true,
-              matchBase: true,
-            },
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '*.svg',
-            patternOptions: {
-              dot: true,
-              nocomment: true,
-              matchBase: true,
-            },
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: '@/**/*.@(less|scss)',
-            group: 'internal',
-            position: 'after',
-          },
-          {
-            pattern: './**/*.@(less|scss)',
-            group: 'index',
-          },
-          {
-            pattern: '@/**',
-            group: 'internal',
-          },
-        ],
-        groups: [
+        // Disallow `const { props, state } = this`; true by default
+        allowDestructuring: false,
+        // Allow `const self = this`; `[]` by default
+        allowedNames: ['self'],
+      },
+    ],
+
+    /** Override */
+
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+    // https://github.com/import-js/eslint-plugin-import/issues/1639
+    'import/order': [
+      'warn',
+      {
+        'groups': [
           'builtin',
           'external',
           'internal',
@@ -89,42 +31,9 @@ const config: Linter.Config = {
           'type',
         ],
         'newlines-between': 'always',
-        warnOnUnassignedImports: true,
-        alphabetize: {
-          // sort in ascending order. Options: ['ignore', 'asc', 'desc']
-          order: 'asc',
-          // ignore case. Options: [true, false]
-          caseInsensitive: false,
-        },
       },
     ],
-    '@typescript-eslint/no-this-alias': [
-      'error',
-      {
-        // Disallow `const { props, state } = this`; true by default
-        allowDestructuring: false,
-        // Allow `const self = this`; `[]` by default
-        allowedNames: ['self'],
-      },
-    ],
-    '@typescript-eslint/no-empty-interface': [
-      0,
-      {
-        'import/no-named-as-default-member': 0,
-      },
-    ],
-    '@typescript-eslint/consistent-type-imports': [
-      1,
-      {
-        disallowTypeAnnotations: false,
-      },
-    ],
-    '@typescript-eslint/triple-slash-reference': [
-      0,
-      {
-        'no-unused-expressions': 'off',
-      },
-    ],
+    'curly': ['error', 'all'],
   },
 }
 

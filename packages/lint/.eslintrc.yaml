@@ -1,2 +1,3 @@
 root: true
-extends: ['./dist/eslint.js']
+extends:
+  - ./dist/eslint

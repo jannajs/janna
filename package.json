@@ -8,10 +8,12 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "devDependencies": {
     "@jannajs/lint": "workspace:*",
-    "rimraf": "^3.0.2",
-    "tsup": "^5.12.5",
     "turbo": "^1.2.4"
   },
   "dependencies": {
