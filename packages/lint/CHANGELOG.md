@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.0.4
+
+### Patch Changes
+
+- fix: git hooks
+
 ## 2.0.3
 
 ### Patch Changes
