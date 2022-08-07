@@ -5,7 +5,7 @@ import { packageJson } from 'mrm-core'
 import * as husky from 'husky'
 import * as execa from 'execa'
 
-import { peerDependencies } from '../package.json'
+import { name as packageName, peerDependencies } from '../package.json'
 
 import { isMonorepo, isNextProject } from './utils'
 
@@ -104,11 +104,11 @@ export function configureLintStaged() {
 
   husky.set(
     '.husky/prepare-commit-msg',
-    ['npx @duiyun/lint prepare-commit-msg $1'].join('\n'),
+    [`npx ${packageName} prepare-commit-msg $1`].join('\n'),
   )
 
   husky.set(
     '.husky/commit-msg',
-    ['npx @duiyun/lint verify-commit $1'].join('\n'),
+    [`npx ${packageName} verify-commit $1`].join('\n'),
   )
 }
