@@ -63,10 +63,6 @@ export async function installHusky() {
 }
 
 export async function installLintStaged() {
-  // ref: https://typicode.github.io/husky
-  // Yarn 2+ doesn't support prepare lifecycle script
-  // 添加脚本方案安装依赖后执行，创建 .husky 文件夹
-  packageJson().setScript('prepare', 'husky install').save()
   await installDevDependency(`lint-staged`)
   await installHusky()
 }
@@ -76,7 +72,12 @@ export function configureLintStaged() {
   const prettierExts = ['js', 'jsx', 'tsx', 'ts', 'css', 'less', 'scss', 'sass', 'md', 'yaml']
   const eslintExts = ['js', 'jsx', 'ts', 'tsx']
 
+  husky.install()
+
+  // ref: https://typicode.github.io/husky
+  // Yarn 2+ doesn't support prepare lifecycle script
   packageJson()
+    .setScript('prepare', 'husky install')
     .setScript('lint-staged', 'lint-staged')
     .setScript('lint-staged:lint', 'eslint')
     .setScript(
