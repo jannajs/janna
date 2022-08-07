@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.0.5
+
+### Patch Changes
+
+- fix: assets
+
 ## 2.0.4
 
 ### Patch Changes
