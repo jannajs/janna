@@ -8,4 +8,5 @@ export default defineConfig({
   clean: true,
   bundle: false,
   dts: true,
+  onSuccess: 'esno scripts/copy.ts',
 })
