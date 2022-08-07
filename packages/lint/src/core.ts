@@ -3,7 +3,7 @@ import path from 'path'
 import fse from 'fs-extra'
 import { packageJson } from 'mrm-core'
 import * as husky from 'husky'
-import execa from 'execa'
+import * as execa from 'execa'
 
 import { peerDependencies } from '../package.json'
 
@@ -45,7 +45,7 @@ export async function installDevDependency(dep: string) {
     command = `ni -Dw ${dep}`
   }
 
-  execa.execaCommandSync(command, {
+  execa.commandSync(command, {
     stdio: 'inherit',
   })
 }

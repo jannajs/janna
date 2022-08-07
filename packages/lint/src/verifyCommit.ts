@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fse from 'fs-extra'
-import { osLocale } from 'os-locale'
+import osLocale from 'os-locale'
 import chalk from 'chalk'
 import consola from 'consola'
 
