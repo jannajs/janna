@@ -1,5 +1,12 @@
 # @jannajs/lint
 
+## 2.1.0
+
+### Minor Changes
+
+- feat: support custom cliName
+  fix: check commit msg
+
 ## 2.0.5
 
 ### Patch Changes
