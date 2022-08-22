@@ -7,13 +7,13 @@
     "https://opencollective.com/yuns",
     "https://afdian.net/@yunslove"
   ],
-  "homepage": "https://github.com/yunsii/@jannajs/lint#readme",
+  "homepage": "https://github.com/jannajs/janna/blob/master/packages/lint/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunsii/@jannajs/lint.git",
+    "url": "https://github.com/jannajs/janna",
     "directory": "packages/lint"
   },
-  "bugs": "https://github.com/yunsii/@jannajs/lint/issues",
+  "bugs": "https://github.com/jannajs/janna/issues",
   "scripts": {
     "build": "tsup",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
