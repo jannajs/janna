@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.1.2
+
+### Patch Changes
+
+- chore: fix repository url
+
 ## 2.1.1
 
 ### Patch Changes
