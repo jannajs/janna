@@ -6,7 +6,7 @@ import consola from 'consola'
 
 // ref: https://github.com/umijs/fabric/blob/master/src/verifyCommit.ts
 
-const commitRE =
+export const commitRE =
   /^(((\uD83C[\uDF00-\uDFFF])|(\uD83D[\uDC00-\uDE4F\uDE80-\uDEFF])|[\u2600-\u2B55]) )?(revert: )?(feat|fix|docs|UI|refactor|perf|workflow|build|CI|typos|chore|tests|types|wip|release|dep|locale)(\(.+\))?: .{1,50}/
 
 export default function verify(msgPath: string, debug = false) {
