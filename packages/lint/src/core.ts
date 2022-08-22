@@ -1,3 +1,5 @@
+// 原子化工具函数集合，可供其他实现封装
+
 import path from 'path'
 
 import fse from 'fs-extra'
@@ -67,7 +69,12 @@ export async function installLintStaged() {
   await installHusky()
 }
 
-export function configureLintStaged() {
+/**
+ * 保证其他实现可基于该函数封装，因此需要支持传入 cliName
+ *
+ * @param cliName
+ */
+export function configureLintStaged(cliName = packageName) {
   // prettier-ignore
   const prettierExts = ['js', 'jsx', 'tsx', 'ts', 'css', 'less', 'scss', 'sass', 'md', 'yaml']
   const eslintExts = ['js', 'jsx', 'ts', 'tsx']
@@ -104,11 +111,8 @@ export function configureLintStaged() {
 
   husky.set(
     '.husky/prepare-commit-msg',
-    [`npx ${packageName} prepare-commit-msg $1`].join('\n'),
+    [`npx ${cliName} prepare-commit-msg $1`].join('\n'),
   )
 
-  husky.set(
-    '.husky/commit-msg',
-    [`npx ${packageName} verify-commit $1`].join('\n'),
-  )
+  husky.set('.husky/commit-msg', [`npx ${cliName} verify-commit $1`].join('\n'))
 }
