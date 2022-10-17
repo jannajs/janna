@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.2.1
+
+### Patch Changes
+
+- fix: use eslint config react
+
 ## 2.2.0
 
 ### Minor Changes
