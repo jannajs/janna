@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.2.0
+
+### Minor Changes
+
+- update deps and add new rules
+
 ## 2.1.2
 
 ### Patch Changes
