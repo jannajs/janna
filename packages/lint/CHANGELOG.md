@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.0
+
+### Minor Changes
+
+- feat: use commitlint
+
 ## 2.2.1
 
 ### Patch Changes
@@ -28,8 +34,7 @@
 
 ### Minor Changes
 
-- feat: support custom cliName
-  fix: check commit msg
+- feat: support custom cliName fix: check commit msg
 
 ## 2.0.5
 
