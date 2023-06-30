@@ -95,11 +95,15 @@ export function configureLintStaged(cliName = packageName) {
     )
     .setScript(
       'prettier',
-      `prettier --check --write "**/*.(${prettierExts.join('|')})"`,
+      `prettier --check --write --no-plugin-search "**/*.(${prettierExts.join(
+        '|',
+      )})"`,
     )
     .set('lint-staged', {
       [`**/*.{${eslintExts.join(',')}}`]: 'npm run lint-staged:lint',
-      [`**/*.{${prettierExts.join(',')}}`]: ['prettier --write'],
+      [`**/*.{${prettierExts.join(',')}}`]: [
+        'prettier --write --no-plugin-search',
+      ],
     })
     .save()
 

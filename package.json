@@ -6,12 +6,11 @@
     "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx .",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "lint-staged:lint": "eslint",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
-    "prettier": "prettier --check --write \"**/*.(js|jsx|tsx|ts|css|less|scss|sass|md|yaml)\""
+    "prettier": "prettier --check --write --no-plugin-search \"**/*.(js|jsx|tsx|ts|css|less|scss|sass|md|yaml)\""
   },
   "workspaces": [
     "apps/*",
@@ -36,7 +35,7 @@
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:lint",
     "**/*.{js,jsx,tsx,ts,css,less,scss,sass,md,yaml}": [
-      "prettier --write"
+      "prettier --write --no-plugin-search"
     ]
   }
 }
