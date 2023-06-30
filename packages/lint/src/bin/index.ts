@@ -1,7 +1,6 @@
 import { program } from 'commander'
 
-import prepareCommitMsg from '../prepareCommitMsg'
-import verifyCommit from '../verifyCommit'
+import { emojify } from '../emojify'
 
 import main from './main'
 
@@ -13,21 +12,11 @@ program
   })
 
 program
-  .command('prepare-commit-msg')
-  .description('Git 提交信息预处理')
+  .command('emojify')
+  .description('为 Git 提交信息添加 emoji 前缀')
   .argument('<string>', 'Git 提交信息临时文件路径')
-  .option('-d, --debug', 'Debug 模式')
-  .action((msgPath, options) => {
-    prepareCommitMsg(msgPath, options.debug)
-  })
-
-program
-  .command('verify-commit')
-  .description('Git 提交信息验证')
-  .argument('<string>', 'Git 提交信息临时文件路径')
-  .option('-d, --debug', 'Debug 模式')
-  .action((msgPath, options) => {
-    verifyCommit(msgPath, options.debug)
+  .action((msgPath) => {
+    emojify(msgPath)
   })
 
 program.parse()

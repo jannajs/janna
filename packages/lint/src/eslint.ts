@@ -1,7 +1,7 @@
 import type { Linter } from 'eslint'
 
 const config: Linter.Config = {
-  extends: ['@antfu/eslint-config-react', 'prettier'],
+  extends: ['@antfu', '@antfu/react', 'prettier'],
   rules: {
     // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-this-alias.md
     '@typescript-eslint/no-this-alias': [

@@ -1,15 +1,17 @@
+import path from 'path'
+
 import chalk from 'chalk'
 import consola from 'consola'
+import fse from 'fs-extra'
 
-import { name, version } from '../../package.json'
+import { name } from '../../package.json'
 import {
   configureLintStaged,
+  generateCommitLintConfig,
   generateESLintConfig,
   generateEditorConfig,
   generatePrettierConfig,
-  installEslint,
-  installLintStaged,
-  installPrettier,
+  installPeerDependencies,
 } from '../core'
 
 export default async function init() {
@@ -19,8 +21,11 @@ export default async function init() {
     chalk.bold('Generate editor config `.editorconfig` done'),
   )
 
-  await installPrettier()
-  consola.info(chalk.green('[janna:lint]'), chalk.bold('install prettier done'))
+  await installPeerDependencies()
+  consola.info(
+    chalk.green('[janna:lint]'),
+    chalk.bold('install peer dependencies done'),
+  )
 
   generatePrettierConfig()
   consola.info(
@@ -28,19 +33,16 @@ export default async function init() {
     chalk.bold('Generate prettier config `.prettierrc.yaml` done'),
   )
 
-  await installEslint()
-  consola.info(chalk.green('[janna:lint]'), chalk.bold('install eslint done'))
-
   generateESLintConfig()
   consola.info(
     chalk.green('[janna:lint]'),
     chalk.bold('Generate eslint config `.eslintrc.yaml` done'),
   )
 
-  await installLintStaged()
+  generateCommitLintConfig()
   consola.info(
     chalk.green('[janna:lint]'),
-    chalk.bold('install lint-staged done'),
+    chalk.bold('Generate commitlint config `commitlint.config.ts` done'),
   )
 
   configureLintStaged()
@@ -49,6 +51,9 @@ export default async function init() {
     chalk.bold('configure lint-stage done'),
   )
 
+  const version = fse.readJsonSync(
+    path.join(__dirname, '../..', 'package.json'),
+  ).version
   consola.info('\n')
   consola.info(chalk.bold(`${name} v${version}`))
   consola.info('\n')

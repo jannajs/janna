@@ -41,32 +41,28 @@ export function generateESLintConfig() {
   )
 }
 
-export async function installDevDependency(dep: string) {
-  let command = `ni -D ${dep}`
+export function generateCommitLintConfig() {
+  const configFileName = 'commitlint.config.ts'
+  generateConfig(configFileName)
+}
+
+export async function installDevDependencies(deps: string[]) {
+  let command = `ni -D ${deps.join(' ')}`
   if (isMonorepo) {
-    command = `ni -Dw ${dep}`
+    command = `ni -Dw ${deps.join(' ')}`
   }
 
   execa.commandSync(command, {
-    stdio: 'inherit',
+    // 仅在出错时输出到父进程控制台
+    stderr: 'inherit',
   })
 }
 
-export async function installPrettier() {
-  await installDevDependency(`prettier@${peerDependencies.prettier}`)
-}
-
-export async function installEslint() {
-  await installDevDependency(`eslint@${peerDependencies.eslint}`)
-}
-
-export async function installHusky() {
-  await installDevDependency(`husky`)
-}
-
-export async function installLintStaged() {
-  await installDevDependency(`lint-staged`)
-  await installHusky()
+export async function installPeerDependencies() {
+  const deps = Object.keys(peerDependencies).map((peer) => {
+    return `${peer}@${peerDependencies[peer as keyof typeof peerDependencies]}`
+  })
+  await installDevDependencies(deps)
 }
 
 /**
@@ -109,10 +105,10 @@ export function configureLintStaged(cliName = packageName) {
 
   husky.set('.husky/pre-commit', ['npx lint-staged'].join('\n'))
 
-  husky.set(
-    '.husky/prepare-commit-msg',
-    [`npx ${cliName} prepare-commit-msg $1`].join('\n'),
+  husky.add(
+    '.husky/commit-msg',
+    ['npx --no -- commitlint --edit $1', `npx ${cliName} emojify $1`].join(
+      '\n',
+    ),
   )
-
-  husky.set('.husky/commit-msg', [`npx ${cliName} verify-commit $1`].join('\n'))
 }

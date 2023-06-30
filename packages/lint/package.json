@@ -22,19 +22,27 @@
     "dist",
     "bin",
     ".editorconfig",
-    ".prettierrc.yaml"
+    ".prettierrc.yaml",
+    "commitlint.config.ts"
   ],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "bin": "bin/cli.js",
   "peerDependencies": {
+    "@antfu/eslint-config": "^0.35.3",
+    "@antfu/eslint-config-react": "^0.35.3",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@commitlint/types": "^17.4.4",
     "eslint": ">=8.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "lint-staged": "^13.1.2",
     "prettier": ">=2.0.0"
   },
   "dependencies": {
-    "@antfu/eslint-config-react": "^0.27.0",
     "@antfu/ni": "^0.18.2",
+    "@commitlint/is-ignored": "^17.6.6",
     "commander": "^9.4.0",
     "consola": "^2.15.3",
     "eslint-config-prettier": "^8.5.0",
@@ -45,6 +53,11 @@
     "os-locale": "^5.0.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.35.3",
+    "@antfu/eslint-config-react": "^0.35.3",
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@commitlint/types": "^17.4.4",
     "@jannajs/tsconfig": "workspace:*",
     "@types/eslint": "^8.4.1",
     "@types/fs-extra": "^9.0.13",
