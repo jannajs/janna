@@ -13,5 +13,8 @@
   },
   "bugs": {
     "url": "https://github.com/jannajs/janna/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
