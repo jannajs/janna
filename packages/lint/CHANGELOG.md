@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.1
+
+### Patch Changes
+
+- 🐛 fix: issue of peer dependencies
+
 ## 2.3.0
 
 ### Minor Changes
