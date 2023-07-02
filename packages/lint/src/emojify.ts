@@ -10,7 +10,7 @@ const emojiMap = {
   fix: '🐛',
   perf: '🚀',
   refactor: '📦',
-  revert: '🗑',
+  revert: '⏪️',
   style: '💎',
   test: '🚨',
   release: '🔖',
