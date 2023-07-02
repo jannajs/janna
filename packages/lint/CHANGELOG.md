@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.2
+
+### Patch Changes
+
+- ✨ feat: update revert emoji
+
 ## 2.3.1
 
 ### Patch Changes
