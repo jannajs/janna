@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.4
+
+### Patch Changes
+
+- 🐛 fix: \_\_dirname
+
 ## 2.3.3
 
 ### Patch Changes
