@@ -38,7 +38,7 @@ export function generateESLintConfig() {
   }
 
   fse.copyFileSync(
-    path.join(__dirname, '..', configFileName),
+    path.join(__dirname, '..', 'templates', configFileName),
     `${process.cwd()}/.eslintrc.yaml`,
   )
 }
