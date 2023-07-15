@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.3
+
+### Patch Changes
+
+- 📦 refactor: build with vite
+
 ## 2.3.2
 
 ### Patch Changes
