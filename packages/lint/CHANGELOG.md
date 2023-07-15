@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.5
+
+### Patch Changes
+
+- 🐛 fix: templates path
+
 ## 2.3.4
 
 ### Patch Changes
