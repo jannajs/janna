@@ -1,10 +1,9 @@
-import path from 'path'
+import path from 'node:path'
 
 import chalk from 'chalk'
 import consola from 'consola'
 import fse from 'fs-extra'
 
-import { name } from '../../package.json'
 import {
   configureLintStaged,
   generateCommitLintConfig,
@@ -51,9 +50,9 @@ export default async function init() {
     chalk.bold('configure lint-stage done'),
   )
 
-  const version = fse.readJsonSync(
+  const { name, version } = fse.readJsonSync(
     path.join(__dirname, '../..', 'package.json'),
-  ).version
+  )
   consola.info('\n')
   consola.info(chalk.bold(`${name} v${version}`))
   consola.info('\n')

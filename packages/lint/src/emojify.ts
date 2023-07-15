@@ -1,5 +1,9 @@
 import fse from 'fs-extra'
-import isIgnored from '@commitlint/is-ignored'
+import _isIgnored from '@commitlint/is-ignored'
+
+/** ref: https://github.com/vitejs/vite-plugin-react-pages/issues/64#issuecomment-1222089552 */
+const isIgnored = ((_isIgnored as any).default ||
+  _isIgnored) as typeof _isIgnored
 
 const emojiMap = {
   build: '🛠',

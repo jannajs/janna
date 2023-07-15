@@ -1,13 +1,11 @@
 // 原子化工具函数集合，可供其他实现封装
 
-import path from 'path'
+import path from 'node:path'
 
 import fse from 'fs-extra'
-import { packageJson } from 'mrm-core'
+import mrmCore from 'mrm-core'
 import * as husky from 'husky'
 import * as execa from 'execa'
-
-import { name as packageName, peerDependencies } from '../package.json'
 
 import { isMonorepo, isNextProject } from './utils'
 
@@ -36,7 +34,7 @@ export function generateESLintConfig() {
   }
 
   fse.copyFileSync(
-    path.join(__dirname, 'templates', configFileName),
+    path.join(__dirname, '..', configFileName),
     `${process.cwd()}/.eslintrc.yaml`,
   )
 }
@@ -59,6 +57,9 @@ export async function installDevDependencies(deps: string[]) {
 }
 
 export async function installPeerDependencies() {
+  const { peerDependencies } = fse.readJsonSync(
+    path.join(__dirname, '..', 'package.json'),
+  )
   const deps = Object.keys(peerDependencies).map((peer) => {
     return `${peer}@${peerDependencies[peer as keyof typeof peerDependencies]}`
   })
@@ -67,10 +68,12 @@ export async function installPeerDependencies() {
 
 /**
  * 保证其他实现可基于该函数封装，因此需要支持传入 cliName
- *
- * @param cliName
  */
-export function configureLintStaged(cliName = packageName) {
+export function configureLintStaged(cliName?: string) {
+  const { name } = fse.readJsonSync(path.join(__dirname, '..', 'package.json'))
+
+  const mergedName = cliName || name
+
   // prettier-ignore
   const prettierExts = ['js', 'jsx', 'tsx', 'ts', 'css', 'less', 'scss', 'sass', 'md', 'yaml']
   const eslintExts = ['js', 'jsx', 'ts', 'tsx']
@@ -79,7 +82,8 @@ export function configureLintStaged(cliName = packageName) {
 
   // ref: https://typicode.github.io/husky
   // Yarn 2+ doesn't support prepare lifecycle script
-  packageJson()
+  mrmCore
+    .packageJson()
     .setScript('prepare', 'husky install')
     .setScript('lint-staged', 'lint-staged')
     .setScript('lint-staged:lint', 'eslint')
@@ -111,7 +115,7 @@ export function configureLintStaged(cliName = packageName) {
 
   husky.add(
     '.husky/commit-msg',
-    ['npx --no -- commitlint --edit $1', `npx ${cliName} emojify $1`].join(
+    ['npx --no -- commitlint --edit $1', `npx ${mergedName} emojify $1`].join(
       '\n',
     ),
   )

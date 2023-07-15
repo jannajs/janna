@@ -15,20 +15,21 @@
   },
   "bugs": "https://github.com/jannajs/janna/issues",
   "scripts": {
-    "build": "tsup",
+    "build": "tsc && vite build --config vite.lib.config.ts && tsx ./scripts/copy.ts",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "files": [
     "dist",
     "bin",
+    "templates",
     ".editorconfig",
     ".prettierrc.yaml",
     "commitlint.config.ts"
   ],
-  "main": "dist/index.js",
+  "type": "module",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "bin": "bin/cli.js",
+  "bin": "bin/cli.mjs",
   "peerDependencies": {
     "@antfu/eslint-config": "^0.35.3",
     "@antfu/eslint-config-react": "^0.35.3",
@@ -43,6 +44,7 @@
   "dependencies": {
     "@antfu/ni": "^0.18.2",
     "@commitlint/is-ignored": "^17.6.6",
+    "chalk": "^5.3.0",
     "commander": "^9.4.0",
     "consola": "^2.15.3",
     "eslint-config-prettier": "^8.5.0",
@@ -62,14 +64,15 @@
     "@types/eslint": "^8.4.1",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^17.0.24",
-    "chalk": "^4.0.0",
     "eslint": "^8.28.0",
     "esno": "^0.15.0",
     "globby": "^13.1.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "tsup": "^6.2.1",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "vite": "^4.4.4",
+    "vite-plugin-dts": "^3.3.0",
+    "vite-tsconfig-paths": "^4.2.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
