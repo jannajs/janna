@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import chalk from 'chalk'
 import consola from 'consola'
@@ -12,6 +13,9 @@ import {
   generatePrettierConfig,
   installPeerDependencies,
 } from '../core'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default async function init() {
   generateEditorConfig()

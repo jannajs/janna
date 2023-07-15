@@ -1,6 +1,7 @@
 // 原子化工具函数集合，可供其他实现封装
 
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import fse from 'fs-extra'
 import mrmCore from 'mrm-core'
@@ -8,6 +9,9 @@ import * as husky from 'husky'
 import * as execa from 'execa'
 
 import { isMonorepo, isNextProject } from './utils'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 function generateConfig(fileName: string) {
   fse.copyFileSync(
