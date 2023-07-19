@@ -55,8 +55,7 @@ export async function installDevDependencies(deps: string[]) {
   }
 
   execa.commandSync(command, {
-    // 仅在出错时输出到父进程控制台
-    stderr: 'inherit',
+    stdio: 'inherit',
   })
 }
 
