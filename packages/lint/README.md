@@ -21,6 +21,20 @@ $ npm i -D @jannajs/lint
 $ npx @jannajs/lint init
 ```
 
+## 开发调试
+
+### commitlint 调试
+
+```shell
+echo "foo" | npx commitlint
+
+echo "feat\!: foo" | npx commitlint
+
+echo "feat(module)\!: foo" | npx commitlint
+
+echo "feat(模块)\!: foo" | npx commitlint
+```
+
 ## 注意事项
 
 ### 报错形如 Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: `**/*/commitlint.config.ts`
