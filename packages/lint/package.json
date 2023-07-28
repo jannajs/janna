@@ -24,6 +24,7 @@
     "templates",
     ".editorconfig",
     ".prettierrc.yaml",
+    "pnpm-lock.yaml",
     "commitlint.config.ts"
   ],
   "type": "module",

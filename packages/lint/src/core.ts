@@ -13,7 +13,7 @@ import { isMonorepo, isNextProject } from './utils'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-function generateConfig(fileName: string) {
+function copyPackageFile(fileName: string) {
   fse.copyFileSync(
     path.join(__dirname, '..', fileName),
     `${process.cwd()}/${fileName}`,
@@ -22,12 +22,13 @@ function generateConfig(fileName: string) {
 
 export function generateEditorConfig() {
   const configFileName = '.editorconfig'
-  generateConfig(configFileName)
+  copyPackageFile(configFileName)
 }
 
 export function generatePrettierConfig() {
   const configFileName = '.prettierrc.yaml'
-  generateConfig(configFileName)
+  copyPackageFile(configFileName)
+  copyPackageFile('.prettierignore')
 }
 
 export function generateESLintConfig() {
@@ -45,7 +46,7 @@ export function generateESLintConfig() {
 
 export function generateCommitLintConfig() {
   const configFileName = 'commitlint.config.ts'
-  generateConfig(configFileName)
+  copyPackageFile(configFileName)
 }
 
 export async function installDevDependencies(deps: string[]) {
