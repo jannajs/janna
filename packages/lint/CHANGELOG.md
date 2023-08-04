@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.6
+
+### Patch Changes
+
+- fix: lint usage
+
 ## 2.3.5
 
 ### Patch Changes
