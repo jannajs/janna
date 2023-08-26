@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.7
+
+### Patch Changes
+
+- 🐛 fix: release with .prettierignore
+
 ## 2.3.6
 
 ### Patch Changes
