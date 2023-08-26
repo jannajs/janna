@@ -26,7 +26,7 @@
     ".prettierrc.yaml",
     ".prettierignore",
     "pnpm-lock.yaml",
-    "commitlint.config.ts"
+    "commitlint.config.cts"
   ],
   "type": "module",
   "module": "dist/index.mjs",

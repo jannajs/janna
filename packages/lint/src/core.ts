@@ -45,7 +45,7 @@ export function generateESLintConfig() {
 }
 
 export function generateCommitLintConfig() {
-  const configFileName = 'commitlint.config.ts'
+  const configFileName = 'commitlint.config.cts'
   copyPackageFile(configFileName)
 }
 
