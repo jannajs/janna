@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.8
+
+### Patch Changes
+
+- 🐛 fix: correct commitlint file name
+
 ## 2.3.7
 
 ### Patch Changes
