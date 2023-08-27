@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 2.3.9
+
+### Patch Changes
+
+- ✨ feat: add template-indent rule
+
 ## 2.3.8
 
 ### Patch Changes
