@@ -1,6 +1,9 @@
 import type { Linter } from 'eslint'
 
 const config: Linter.Config = {
+  // https://github.dev/antfu/eslint-config/blob/main/packages/eslint-config/index.js
+  // https://github.dev/antfu/eslint-config/blob/main/packages/eslint-config-ts/index.js
+  // https://github.dev/prettier/eslint-config-prettier/blob/main/index.js
   extends: ['@antfu', '@antfu/react', 'prettier'],
   rules: {
     // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-this-alias.md
@@ -46,6 +49,12 @@ const config: Linter.Config = {
     'unicorn/custom-error-definition': 1,
     // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-lonely-if.md
     'unicorn/no-lonely-if': 1,
+    // https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/template-indent.md
+    // https://github.com/prettier/prettier/issues/8207
+    'unicorn/template-indent': [
+      1,
+      { tags: [], functions: [], selectors: ['TemplateLiteral'] },
+    ],
   },
 }
 
