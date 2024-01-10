@@ -1,12 +1,11 @@
 // 原子化工具函数集合，可供其他实现封装
 
-import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-
+import process from 'node:process'
 import fse from 'fs-extra'
 import mrmCore from 'mrm-core'
 import * as husky from 'husky'
-import * as execa from 'execa'
+import { $, path } from 'zx'
 
 import { isMonorepo, isNextProject } from './utils'
 
@@ -25,18 +24,11 @@ export function generateEditorConfig() {
   copyPackageFile(configFileName)
 }
 
-export function generatePrettierConfig() {
-  const configFileName = '.prettierrc.yaml'
-  copyPackageFile(configFileName)
-  copyPackageFile('.prettierignore')
-}
-
 export function generateESLintConfig() {
   let configFileName = '.eslintrc.yaml'
 
-  if (isNextProject) {
+  if (isNextProject)
     configFileName = '.eslintrc-next.yaml'
-  }
 
   fse.copyFileSync(
     path.join(__dirname, '..', 'templates', configFileName),
@@ -50,14 +42,11 @@ export function generateCommitLintConfig() {
 }
 
 export async function installDevDependencies(deps: string[]) {
-  let command = `ni -D ${deps.join(' ')}`
-  if (isMonorepo) {
-    command = `ni -Dw ${deps.join(' ')}`
-  }
+  if (isMonorepo)
+    await $`ni -Dw ${deps}`
 
-  execa.commandSync(command, {
-    stdio: 'inherit',
-  })
+  else
+    await $`ni -D ${deps}`
 }
 
 export async function installPeerDependencies() {
@@ -78,9 +67,7 @@ export function configureLintStaged(cliName?: string) {
 
   const mergedName = cliName || name
 
-  // prettier-ignore
-  const prettierExts = ['js', 'jsx', 'tsx', 'ts', 'css', 'less', 'scss', 'sass', 'md', 'yaml']
-  const eslintExts = ['js', 'jsx', 'ts', 'tsx']
+  const eslintExts = ['js', 'jsx', 'ts', 'tsx', 'css', 'less', 'scss', 'sass', 'md', 'yml', 'yaml']
 
   husky.install()
 
@@ -94,24 +81,15 @@ export function configureLintStaged(cliName?: string) {
     .setScript(
       'lint',
       `eslint --cache --ext ${eslintExts
-        .map((item) => `.${item}`)
+        .map(item => `.${item}`)
         .join(',')} .`,
     )
     .setScript(
       'lint:fix',
-      `eslint --fix --ext ${eslintExts.map((item) => `.${item}`).join(',')} .`,
-    )
-    .setScript(
-      'prettier',
-      `prettier --check --write --no-plugin-search "**/*.(${prettierExts.join(
-        '|',
-      )})"`,
+      `eslint --fix --ext ${eslintExts.map(item => `.${item}`).join(',')} .`,
     )
     .set('lint-staged', {
       [`**/*.{${eslintExts.join(',')}}`]: 'npm run lint-staged:lint',
-      [`**/*.{${prettierExts.join(',')}}`]: [
-        'prettier --write --no-plugin-search',
-      ],
     })
     .save()
 

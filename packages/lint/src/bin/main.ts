@@ -1,16 +1,13 @@
-import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { chalk, fs, path } from 'zx'
 
-import chalk from 'chalk'
 import consola from 'consola'
-import fse from 'fs-extra'
 
 import {
   configureLintStaged,
   generateCommitLintConfig,
   generateESLintConfig,
   generateEditorConfig,
-  generatePrettierConfig,
   installPeerDependencies,
 } from '../core'
 
@@ -28,12 +25,6 @@ export default async function init() {
   consola.info(
     chalk.green('[janna:lint]'),
     chalk.bold('install peer dependencies done'),
-  )
-
-  generatePrettierConfig()
-  consola.info(
-    chalk.green('[janna:lint]'),
-    chalk.bold('Generate prettier config `.prettierrc.yaml` done'),
   )
 
   generateESLintConfig()
@@ -54,7 +45,7 @@ export default async function init() {
     chalk.bold('configure lint-stage done'),
   )
 
-  const { name, version } = fse.readJsonSync(
+  const { name, version } = fs.readJsonSync(
     path.join(__dirname, '../..', 'package.json'),
   )
   consola.info('\n')
