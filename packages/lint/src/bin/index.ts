@@ -1,7 +1,5 @@
 import { program } from 'commander'
-
 import { emojify } from '../emojify'
-
 import main from './main'
 
 program

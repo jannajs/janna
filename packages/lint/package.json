@@ -1,8 +1,9 @@
 {
   "name": "@jannajs/lint",
+  "type": "module",
   "version": "2.3.9",
-  "license": "MIT",
   "author": "Yuns <yuns.xie@qq.com>",
+  "license": "MIT",
   "funding": [
     "https://opencollective.com/yuns",
     "https://afdian.net/@yunslove"
@@ -14,67 +15,68 @@
     "directory": "packages/lint"
   },
   "bugs": "https://github.com/jannajs/janna/issues",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./eslint": {
+      "types": "./dist/eslint.d.ts",
+      "import": "./dist/eslint.js",
+      "require": "./dist/eslint.cjs"
+    },
+    "./*": "./*"
+  },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": "bin/cli.js",
+  "files": [
+    ".editorconfig",
+    "bin",
+    "commitlint.config.cts",
+    "dist",
+    "templates"
+  ],
   "scripts": {
     "build": "tsc && vite build --config vite.lib.config.ts && tsx ./scripts/copy.ts",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
-  "files": [
-    "dist",
-    "bin",
-    "templates",
-    ".editorconfig",
-    ".prettierrc.yaml",
-    ".prettierignore",
-    "pnpm-lock.yaml",
-    "commitlint.config.cts"
-  ],
-  "type": "module",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "bin": "bin/cli.mjs",
   "peerDependencies": {
-    "@antfu/eslint-config": "^0.35.3",
-    "@antfu/eslint-config-react": "^0.35.3",
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "@commitlint/types": "^17.4.4",
-    "eslint": ">=8.28.0",
-    "eslint-config-prettier": "^8.6.0",
-    "lint-staged": "^13.1.2",
-    "prettier": ">=2.0.0"
+    "@antfu/eslint-config": "^2.6.2",
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "@commitlint/types": "^18.4.4",
+    "eslint": "npm:eslint-ts-patch@^8.56.0-0",
+    "eslint-ts-patch": "^8.56.0-0",
+    "lint-staged": "^13.1.2"
   },
   "dependencies": {
-    "@antfu/ni": "^0.18.2",
-    "@commitlint/is-ignored": "^17.6.6",
-    "chalk": "^5.3.0",
+    "@antfu/ni": "^0.21.12",
+    "@commitlint/is-ignored": "^18.4.4",
     "commander": "^9.4.0",
     "consola": "^2.15.3",
-    "eslint-config-prettier": "^8.5.0",
-    "execa": "^5.0.0",
-    "fs-extra": "^10.1.0",
-    "husky": "^7.0.4",
-    "mrm-core": "^7.0.0",
-    "os-locale": "^5.0.0"
+    "husky": "^8.0.3",
+    "mrm-core": "^7.1.22",
+    "os-locale": "^6.0.2",
+    "zx": "^7.2.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.41.0",
-    "@antfu/eslint-config-react": "^0.41.0",
-    "@commitlint/cli": "^17.6.6",
-    "@commitlint/config-conventional": "^17.6.6",
-    "@commitlint/types": "^17.4.4",
+    "@antfu/eslint-config": "^2.6.2",
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "@commitlint/types": "^18.4.4",
     "@jannajs/tsconfig": "workspace:*",
-    "@types/eslint": "^8.4.1",
-    "@types/fs-extra": "^9.0.13",
-    "@types/node": "^17.0.24",
-    "eslint": "^8.48.0",
-    "esno": "^0.15.0",
-    "globby": "^13.1.1",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.6.3",
-    "vite": "^4.4.4",
-    "vite-plugin-dts": "^3.3.0",
-    "vite-tsconfig-paths": "^4.2.0"
+    "@types/eslint": "^8.56.1",
+    "@types/node": "^18.0.0",
+    "eslint": "npm:eslint-ts-patch@^8.56.0-0",
+    "eslint-ts-patch": "8.56.0-0",
+    "rimraf": "^5.0.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vite-plugin-dts": "^3.7.0",
+    "vite-tsconfig-paths": "^4.2.3"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

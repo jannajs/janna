@@ -1,22 +1,10 @@
-import path from 'path'
+import { path } from 'zx'
 
 import { mergeConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
-import { dependencies, peerDependencies } from './package.json'
-import baseConfig from './vite.base.config'
-
 import type { UserConfig } from 'vite'
-
-const externalPackages = [dependencies, peerDependencies].flatMap((item) =>
-  Object.keys(item || {}),
-)
-
-// Creating regexps of the packages to make sure subpaths of the
-// packages are also treated as external
-const regexpsOfPackages = externalPackages.map(
-  (packageName) => new RegExp(`^${packageName}(/.*)?`),
-)
+import baseConfig from './vite.base.config'
 
 // https://vitejs.dev/config/
 export default mergeConfig(baseConfig, {
@@ -38,7 +26,7 @@ export default mergeConfig(baseConfig, {
           dir: 'dist',
           preserveModules: true,
           preserveModulesRoot: 'src',
-          entryFileNames: '[name].mjs',
+          entryFileNames: '[name].js',
           format: 'es',
           dynamicImportInCjs: true,
         },
@@ -50,7 +38,7 @@ export default mergeConfig(baseConfig, {
           format: 'cjs',
         },
       ],
-      external: [...regexpsOfPackages, /^node:.*$/],
+      external: [/node_modules/, /^node:.*$/],
     },
     target: 'esnext',
   },

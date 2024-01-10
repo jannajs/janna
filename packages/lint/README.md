@@ -6,10 +6,9 @@
 
 - `.editorconfig`
 - eslint
-- prettier
 - commitlint
 
-> 默认生成的 eslint 和 prettier 配置为 yaml 格式，VS Code 用户建议安装 `redhat.vscode-yaml` 插件以支持 eslint 和 prettier 配置的 schema 提示。
+> 默认生成的 eslint 配置为 yaml 格式，VS Code 用户建议安装 `redhat.vscode-yaml` 插件以支持 eslint 配置的 schema 提示。
 
 ## 如何使用
 
