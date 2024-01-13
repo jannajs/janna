@@ -17,13 +17,18 @@ export function getTailwindFlatConfigs(
 
   const rules: Linter.FlatConfig[] = []
 
-  if (!tailwind)
+  if (!tailwind) {
     return rules
+  }
 
   if (typeof tailwind === 'object') {
     rules.push(...compat.config({
       // eslint-plugin-tailwindcss
       extends: ['plugin:tailwindcss/recommended'],
+      rules: {
+        'tailwindcss/no-custom-classname': 'off',
+        'tailwindcss/migration-from-tailwind-2': 'off',
+      },
     }).map((item) => {
       return {
         ...item,

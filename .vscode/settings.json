@@ -17,7 +17,8 @@
 
   // Silent the stylistic rules in you IDE, but still auto fix them
   "eslint.rules.customizations": [
-    { "rule": "style/*", "severity": "off" },
+    // 存在部分暂时不能自动修复的，比如 style/max-statements-per-line
+    // { "rule": "style/*", "severity": "off" },
     { "rule": "format/*", "severity": "off" },
     { "rule": "*-indent", "severity": "off" },
     { "rule": "*-spacing", "severity": "off" },

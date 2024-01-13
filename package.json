@@ -4,7 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --no-cache --parallel --continue",
-    "lint": "eslint --cache .",
+    "lint": "eslint .",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules",
     "prepare": "husky install",

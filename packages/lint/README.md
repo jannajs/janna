@@ -4,6 +4,8 @@
 
 ## 功能特色
 
+> [VS Code 支持](https://github.com/antfu/eslint-config#vs-code-support-auto-fix)
+
 基于 [@antfu/eslint-config](https://github.com/antfu/eslint-config) 定制，默认禁用 vue，开启 react 支持。特别的，支持 Next.js 规则。
 
 - .editorconfig

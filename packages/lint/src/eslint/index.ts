@@ -37,6 +37,11 @@ export default async function janna(
        */
       markdown: 'prettier',
     },
+    overrides: {
+      stylistic: {
+        curly: ['error', 'all'],
+      },
+    },
     ...antfuOptions,
   }, getNextFlatConfigs({ next }), getTailwindFlatConfigs({ tailwind }), { rules:
       // 交互优化
