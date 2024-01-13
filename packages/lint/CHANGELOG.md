@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.2
+
+### Patch Changes
+
+- 🐛 fix: support next rootDir config
+
 ## 3.0.0-next.1
 
 ### Patch Changes

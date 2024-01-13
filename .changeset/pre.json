@@ -6,6 +6,7 @@
     "@jannajs/tsconfig": "0.0.1"
   },
   "changesets": [
+    "gorgeous-games-smash",
     "thick-games-impress",
     "yellow-moles-jump"
   ]
