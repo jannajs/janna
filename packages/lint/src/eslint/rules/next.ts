@@ -24,9 +24,9 @@ export interface GetNextFlatConfigsOptions {
   /**
    * 支持 @next/eslint-plugin-next
    *
-   * 常规单仓库单项目直接设置为 true 即可，如果是 monorepo 可通过 dirs 配置相关目录，例如：
+   * 常规单仓库单项目直接设置为 true 即可，如果是 monorepo 可通过 rootDir 配置相关目录，例如：
    *
-   * dirs: ["demos/with-nextjs/src/pages"]
+   * rootDir: ["demos/with-nextjs"]
    */
   next?: boolean | {
     /**
