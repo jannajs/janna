@@ -1,1 +1,1 @@
-export const ALL_JS = '**/*.{js?(x),ts?(x)}'
+export const ALL_JS = '**/*.?([cm])[jt]s?(x)'

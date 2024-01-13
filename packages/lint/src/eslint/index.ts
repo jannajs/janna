@@ -15,7 +15,11 @@ export default async function janna(
   const { next, tailwind, ...antfuOptions } = options
 
   const result = await antfu({
-    react: true,
+    react: {
+      overrides: {
+        'react/prop-types': 'off',
+      },
+    },
     vue: false,
     // 当前通过 prettier 格式化 CSS HTML 和 Markdown
     // 同时 VS Code 开启 eslint 校验以下格式，使得保存时能够自动格式化处理
@@ -38,6 +42,7 @@ export default async function janna(
       markdown: 'prettier',
     },
     overrides: {
+      // 外部 stylistic 没有重写配置
       stylistic: {
         curly: ['error', 'all'],
       },
@@ -53,7 +58,6 @@ export default async function janna(
         'style/jsx-quotes': ['error', 'prefer-single'],
         // 关闭变量未使用校验，方便后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
         'unused-imports/no-unused-vars': 'off',
-        'curly': ['error', 'all'],
 
         // 新增
         // https://github.com/prettier/prettier/issues/8207

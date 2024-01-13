@@ -22,7 +22,8 @@ function processRootDir(rootDir: string, cwd?: string): string[] {
 
 export interface GetNextFlatConfigsOptions {
   /**
-   * 支持 @next/eslint-plugin-next
+   * Requires installing:
+   * - `@next/eslint-plugin-next`
    *
    * 常规单仓库单项目直接设置为 true 即可，如果是 monorepo 可通过 rootDir 配置相关目录，例如：
    *

@@ -7,7 +7,8 @@ const compat = new FlatCompat()
 
 export interface GetTailwindFlatConfigsOptions {
   /**
-   * 支持 eslint-plugin-tailwindcss
+   * Requires installing:
+   * - `eslint-plugin-tailwindcss`
    *
    * 常规单仓库单项目直接设置为 true 即可，如果是 monorepo 可通过 dirs 配置相关目录，例如：
    *
