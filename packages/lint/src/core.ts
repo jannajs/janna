@@ -35,9 +35,12 @@ export function generateCommitLintConfig() {
 }
 
 export async function installDevDependencies(deps: string[]) {
-  if (isMonorepo)
+  if (isMonorepo) {
     await $`ni -Dw ${deps}`
-  else await $`ni -D ${deps}`
+  }
+  else {
+    await $`ni -D ${deps}`
+  }
 }
 
 export async function installPeerDependencies() {
@@ -67,7 +70,7 @@ export function configureLintStaged(cliName?: string) {
     .setScript('prepare', 'husky install')
     .setScript('lint-staged', 'lint-staged')
     .setScript('lint-staged:lint', 'eslint')
-    .setScript('lint', `eslint --cache .`)
+    .setScript('lint', `eslint .`)
     .setScript('lint:fix', `eslint --fix .`)
     .set('lint-staged', {
       [`*`]: 'npm run lint-staged:lint',

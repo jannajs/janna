@@ -24,15 +24,17 @@ export function getNextFlatConfigs(
 
   const rules: Linter.FlatConfig[] = []
 
-  if (!next)
+  if (!next) {
     return rules
+  }
 
   if (typeof next === 'object') {
     // 使用 compat.config('next') 报错
     rules.push(...compat.plugins('@next/next').map((item) => {
+      const dirs = next.dirs.filter(Boolean)
       return {
         ...item,
-        files: next.dirs.filter(Boolean).map((dirItem) => {
+        files: dirs.map((dirItem) => {
           return `${dirItem}/**/*.{js?(x),ts?(x)}`
         }),
         // Customized from https://unpkg.com/@next/eslint-plugin-next@14.0.4/dist/index.js
@@ -61,7 +63,7 @@ export function getNextFlatConfigs(
           '@next/next/no-head-import-in-document': 'error',
           '@next/next/no-script-component-in-head': 'error',
           // next/core-web-vitals
-          '@next/next/no-html-link-for-pages': 'error',
+          '@next/next/no-html-link-for-pages': ['error', dirs],
           '@next/next/no-sync-scripts': 'error',
 
           // Next.js 规范可以导出多个对象
