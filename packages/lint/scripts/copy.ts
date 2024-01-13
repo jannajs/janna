@@ -6,8 +6,9 @@ function toDest(file: string) {
   return file.replace(/^src\//, 'dist/')
 }
 
-// 拷贝不会被编译输出的文件到编译目录中
-glob.globbySync('src/**/(*.tpl|*.js|*.yaml)').forEach((file) => {
+glob.globbySync('src/templates/**/*', {
+  dot: true,
+}).forEach((file) => {
   fs.copySync(file, toDest(file), {
     overwrite: true,
   })

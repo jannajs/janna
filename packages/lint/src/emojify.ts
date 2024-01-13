@@ -25,7 +25,7 @@ export function emojify(msgPath: string) {
   if (isIgnored(msg))
     return
 
-  const key = Object.keys(emojiMap).find(item => msg.startsWith(item)) as
+  const key = Object.keys(emojiMap).find((item) => msg.startsWith(item)) as
     | keyof typeof emojiMap
     | undefined
 

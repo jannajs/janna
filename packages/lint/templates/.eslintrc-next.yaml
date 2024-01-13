@@ -1,4 +1,0 @@
-root: true
-extends:
-  - next/core-web-vitals
-  - ./node_modules/@jannajs/lint/dist/eslint.cjs

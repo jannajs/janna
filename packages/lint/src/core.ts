@@ -7,14 +7,14 @@ import mrmCore from 'mrm-core'
 import * as husky from 'husky'
 import { $, path } from 'zx'
 
-import { isMonorepo, isNextProject } from './utils'
+import { isMonorepo } from './utils'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 function copyPackageFile(fileName: string) {
   fse.copyFileSync(
-    path.join(__dirname, '..', fileName),
+    path.join(__dirname, 'templates', fileName),
     `${process.cwd()}/${fileName}`,
   )
 }
@@ -25,28 +25,19 @@ export function generateEditorConfig() {
 }
 
 export function generateESLintConfig() {
-  let configFileName = '.eslintrc.yaml'
-
-  if (isNextProject)
-    configFileName = '.eslintrc-next.yaml'
-
-  fse.copyFileSync(
-    path.join(__dirname, '..', 'templates', configFileName),
-    `${process.cwd()}/.eslintrc.yaml`,
-  )
+  const configFileName = 'eslint.config.ts'
+  copyPackageFile(configFileName)
 }
 
 export function generateCommitLintConfig() {
-  const configFileName = 'commitlint.config.cts'
+  const configFileName = 'commitlint.config.ts'
   copyPackageFile(configFileName)
 }
 
 export async function installDevDependencies(deps: string[]) {
   if (isMonorepo)
     await $`ni -Dw ${deps}`
-
-  else
-    await $`ni -D ${deps}`
+  else await $`ni -D ${deps}`
 }
 
 export async function installPeerDependencies() {
@@ -67,8 +58,6 @@ export function configureLintStaged(cliName?: string) {
 
   const mergedName = cliName || name
 
-  const eslintExts = ['js', 'jsx', 'ts', 'tsx', 'css', 'less', 'scss', 'sass', 'md', 'yml', 'yaml']
-
   husky.install()
 
   // ref: https://typicode.github.io/husky
@@ -78,24 +67,16 @@ export function configureLintStaged(cliName?: string) {
     .setScript('prepare', 'husky install')
     .setScript('lint-staged', 'lint-staged')
     .setScript('lint-staged:lint', 'eslint')
-    .setScript(
-      'lint',
-      `eslint --cache --ext ${eslintExts
-        .map(item => `.${item}`)
-        .join(',')} .`,
-    )
-    .setScript(
-      'lint:fix',
-      `eslint --fix --ext ${eslintExts.map(item => `.${item}`).join(',')} .`,
-    )
+    .setScript('lint', `eslint --cache .`)
+    .setScript('lint:fix', `eslint --fix .`)
     .set('lint-staged', {
-      [`**/*.{${eslintExts.join(',')}}`]: 'npm run lint-staged:lint',
+      [`*`]: 'npm run lint-staged:lint',
     })
     .save()
 
   husky.set('.husky/pre-commit', ['npx lint-staged'].join('\n'))
 
-  husky.add(
+  husky.set(
     '.husky/commit-msg',
     ['npx --no -- commitlint --edit $1', `npx ${mergedName} emojify $1`].join(
       '\n',

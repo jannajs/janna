@@ -2,13 +2,51 @@
 
 > 代码规范初始化工具
 
-## Features
+## 功能特色
 
-- `.editorconfig`
-- eslint
-- commitlint
+基于 [@antfu/eslint-config](https://github.com/antfu/eslint-config) 定制，默认禁用 vue，开启 react 支持。特别的，支持 Next.js 规则。
 
-> 默认生成的 eslint 配置为 yaml 格式，VS Code 用户建议安装 `redhat.vscode-yaml` 插件以支持 eslint 配置的 schema 提示。
+- .editorconfig
+- commitlint.config.ts
+- eslint.config.ts
+
+### Next.js
+
+要启用 Next.js 支持，你需要显式地启用：
+
+```ts
+// eslint.config.js
+import janna from '@jannajs/lint/eslint'
+
+export default janna({
+  next: true
+})
+```
+
+运行 `npx eslint` 会提示你安装所需的依赖项，当然，你可以手动安装它们：
+
+```
+npm i -D @next/eslint-plugin-next
+```
+
+### Tailwind CSS
+
+要启用 Tailwind CSS 支持，你需要显式地启用：
+
+```ts
+// eslint.config.js
+import janna from '@jannajs/lint/eslint'
+
+export default janna({
+  tailwind: true
+})
+```
+
+运行 `npx eslint` 会提示你安装所需的依赖项，当然，你可以手动安装它们：
+
+```
+npm i -D eslint-plugin-tailwindcss
+```
 
 ## 如何使用
 
@@ -18,7 +56,15 @@ $ npm i -D @jannajs/lint
 # pnpm add -D @jannajs/lint
 
 $ npx @jannajs/lint init
+
+# 查看当前项目的 eslint 规则详情
+$ npx eslint-flat-config-viewer
 ```
+
+## 文档说明
+
+- [ESLint flat config 在 monorepo 下如何使用？](https://github.com/eslint/eslint/discussions/16960)
+- [测试 glob 模式匹配](https://globster.xyz/)
 
 ## 开发调试
 

@@ -8,14 +8,16 @@ import baseConfig from './vite.base.config'
 
 // https://vitejs.dev/config/
 export default mergeConfig(baseConfig, {
-  plugins: [dts({})],
+  plugins: [dts({
+    exclude: 'src/templates/**',
+  })],
   build: {
     minify: false,
     lib: {
       entry: [
         path.resolve(__dirname, 'src/index.ts'),
         path.resolve(__dirname, 'src/bin/index.ts'),
-        path.resolve(__dirname, 'src/eslint.ts'),
+        path.resolve(__dirname, 'src/eslint/index.ts'),
       ],
     },
     rollupOptions: {

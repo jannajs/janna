@@ -1,11 +1,6 @@
 {
   "name": "@jannajs/tsconfig",
   "version": "0.0.1",
-  "main": "index.js",
-  "files": [
-    "base.json",
-    "node.json"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/jannajs/janna",
@@ -14,6 +9,11 @@
   "bugs": {
     "url": "https://github.com/jannajs/janna/issues"
   },
+  "main": "index.js",
+  "files": [
+    "base.json",
+    "node.json"
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
