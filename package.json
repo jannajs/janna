@@ -2,7 +2,7 @@
   "name": "janna-monorepo",
   "type": "module",
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --filter=@jannajs/lint",
     "dev": "turbo run dev --no-cache --parallel --continue",
     "lint": "eslint .",
     "test": "turbo run test",
