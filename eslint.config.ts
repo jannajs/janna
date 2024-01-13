@@ -1,3 +1,14 @@
-import janna from '@jannajs/lint/dist/eslint'
+import janna from '@jannajs/lint/eslint'
 
-export default janna()
+export default janna({
+  next: {
+    dirs: [
+      'demos/with-nextjs',
+    ],
+  },
+  tailwind: {
+    dirs: [
+      'demos/with-nextjs',
+    ],
+  },
+})

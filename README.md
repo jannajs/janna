@@ -2,7 +2,7 @@
 
 Stylized toolkits to develop TS/JS packages.
 
-# 打包发布
+# build and publish
 
 - `npm run build`
 - `npx changeset`

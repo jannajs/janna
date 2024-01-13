@@ -4,13 +4,13 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --no-cache --parallel --continue",
-    "lint": "eslint --cache --ext .js,.jsx,.ts,.tsx,.css,.less,.scss,.sass,.md,.yml,.yaml .",
+    "lint": "eslint --cache .",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
     "lint-staged:lint": "eslint",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx,.css,.less,.scss,.sass,.md,.yml,.yaml ."
+    "lint:fix": "eslint --fix ."
   },
   "workspaces": [
     "apps/*",
@@ -26,12 +26,19 @@
     "@commitlint/config-conventional": "^18.4.4",
     "@commitlint/types": "^18.4.4",
     "@jannajs/lint": "workspace:*",
-    "eslint": "npm:eslint-ts-patch@^8.56.0-0",
-    "eslint-ts-patch": "^8.56.0-0",
+    "@jannajs/tsconfig": "workspace:*",
+    "@next/eslint-plugin-next": "^14.0.4",
+    "eslint": "npm:eslint-ts-patch@8.56.0-0",
+    "eslint-plugin-format": "^0.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-tailwindcss": "^3.13.1",
+    "eslint-ts-patch": "8.56.0-0",
     "lint-staged": "^13.1.2",
     "turbo": "^1.2.4"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,css,less,scss,sass,md,yml,yaml}": "npm run lint-staged:lint"
+    "*": "npm run lint-staged:lint"
   }
 }

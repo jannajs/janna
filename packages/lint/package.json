@@ -22,9 +22,9 @@
       "require": "./dist/index.cjs"
     },
     "./eslint": {
-      "types": "./dist/eslint.d.ts",
-      "import": "./dist/eslint.js",
-      "require": "./dist/eslint.cjs"
+      "types": "./dist/eslint/index.d.ts",
+      "import": "./dist/eslint/index.js",
+      "require": "./dist/eslint/index.cjs"
     },
     "./*": "./*"
   },
@@ -32,11 +32,8 @@
   "types": "dist/index.d.ts",
   "bin": "bin/cli.js",
   "files": [
-    ".editorconfig",
     "bin",
-    "commitlint.config.cts",
-    "dist",
-    "templates"
+    "dist"
   ],
   "scripts": {
     "build": "tsc && vite build --config vite.lib.config.ts && tsx ./scripts/copy.ts",
@@ -48,6 +45,10 @@
     "@commitlint/config-conventional": "^18.4.4",
     "@commitlint/types": "^18.4.4",
     "eslint": "npm:eslint-ts-patch@^8.56.0-0",
+    "eslint-plugin-format": "^0.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-ts-patch": "^8.56.0-0",
     "lint-staged": "^13.1.2"
   },
@@ -68,9 +69,15 @@
     "@commitlint/types": "^18.4.4",
     "@jannajs/tsconfig": "workspace:*",
     "@types/eslint": "^8.56.1",
+    "@types/eslint__eslintrc": "^2.1.1",
     "@types/node": "^18.0.0",
-    "eslint": "npm:eslint-ts-patch@^8.56.0-0",
+    "eslint": "npm:eslint-ts-patch@8.56.0-0",
+    "eslint-plugin-format": "^0.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-ts-patch": "8.56.0-0",
+    "lint-staged": "^13.1.2",
     "rimraf": "^5.0.5",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",

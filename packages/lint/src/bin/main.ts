@@ -26,7 +26,6 @@ export default async function init() {
     chalk.green('[janna:lint]'),
     chalk.bold('install peer dependencies done'),
   )
-
   generateESLintConfig()
   consola.info(
     chalk.green('[janna:lint]'),
