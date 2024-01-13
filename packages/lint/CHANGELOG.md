@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 🐛 fix: use next tailwind directly
+
 ## 3.0.0-next.0
 
 ### Major Changes
