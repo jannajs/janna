@@ -47,8 +47,23 @@ export async function installPeerDependencies() {
   const { peerDependencies } = fse.readJsonSync(
     path.join(__dirname, '..', 'package.json'),
   )
-  const deps = Object.keys(peerDependencies).map((peer) => {
-    return `${peer}@${peerDependencies[peer as keyof typeof peerDependencies]}`
+
+  const mergedPeerDependencies = {
+    ...peerDependencies,
+    // 如果在 peerDependencies 设置 eslint: 'npm:eslint-ts-patch@^8.56.0-0'
+    // 目前 pnpm 安装依赖会报警告：
+    //
+    // WARN Issues with peer dependencies found
+    // .
+    // └─┬ @jannajs/lint 3.0.0-next.0
+    //   └── ✕ unmet peer eslint@npm:eslint-ts-patch@^8.56.0-0: found 8.56.0-0
+    //
+    // 因此将 patch 逻辑放到代码中
+    eslint: `npm:eslint-ts-patch@${peerDependencies['eslint-ts-patch']}`,
+  }
+
+  const deps = Object.keys(mergedPeerDependencies).map((peer) => {
+    return `${peer}@${mergedPeerDependencies[peer as keyof typeof mergedPeerDependencies]}`
   })
   await installDevDependencies(deps)
 }
