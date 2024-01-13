@@ -1,6 +1,7 @@
 import type { Linter } from 'eslint'
 
 import { FlatCompat } from '@eslint/eslintrc'
+import { ALL_JS } from '../constants'
 
 const compat = new FlatCompat()
 
@@ -8,7 +9,7 @@ export interface GetNextFlatConfigsOptions {
   /**
    * 支持 @next/eslint-plugin-next
    *
-   * 如果是 monorepo 可通过 dirs 配置相关目录，例如：
+   * 常规单仓库单项目直接设置为 true 即可，如果是 monorepo 可通过 dirs 配置相关目录，例如：
    *
    * dirs: ["demos/with-nextjs"]
    */
@@ -31,11 +32,15 @@ export function getNextFlatConfigs(
   if (typeof next === 'object') {
     // 使用 compat.config('next') 报错
     rules.push(...compat.plugins('@next/next').map((item) => {
-      const dirs = next.dirs.filter(Boolean)
+      const dirs = Array.isArray(next.dirs) ? next.dirs.filter(Boolean) : []
       return {
         ...item,
         files: dirs.map((dirItem) => {
-          return `${dirItem}/**/*.{js?(x),ts?(x)}`
+          if (dirItem === '.') {
+            return ALL_JS
+          }
+
+          return `${dirItem}/${ALL_JS}`
         }),
         // Customized from https://unpkg.com/@next/eslint-plugin-next@14.0.4/dist/index.js
         rules: {
@@ -63,7 +68,7 @@ export function getNextFlatConfigs(
           '@next/next/no-head-import-in-document': 'error',
           '@next/next/no-script-component-in-head': 'error',
           // next/core-web-vitals
-          '@next/next/no-html-link-for-pages': ['error', dirs],
+          '@next/next/no-html-link-for-pages': dirs.length ? ['error', dirs] : 'error',
           '@next/next/no-sync-scripts': 'error',
 
           // Next.js 规范可以导出多个对象

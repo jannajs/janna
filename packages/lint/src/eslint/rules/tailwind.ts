@@ -1,10 +1,18 @@
 import type { Linter } from 'eslint'
 
 import { FlatCompat } from '@eslint/eslintrc'
+import { ALL_JS } from '../constants'
 
 const compat = new FlatCompat()
 
 export interface GetTailwindFlatConfigsOptions {
+  /**
+   * 支持 eslint-plugin-tailwindcss
+   *
+   * 常规单仓库单项目直接设置为 true 即可，如果是 monorepo 可通过 dirs 配置相关目录，例如：
+   *
+   * dirs: ["demos/with-nextjs"]
+   */
   tailwind?: boolean | {
     dirs: string[]
   }
@@ -33,8 +41,12 @@ export function getTailwindFlatConfigs(
       return {
         ...item,
         files: tailwind.dirs.filter(Boolean).map((dirItem) => {
+          if (dirItem === '.') {
+            return ALL_JS
+          }
+
           // html 格式需要等到 @angular-eslint/template-parser 适配
-          return `${dirItem}/**/*.{js?(x),ts?(x)}`
+          return `${dirItem}/${ALL_JS}`
         }),
       } satisfies Linter.FlatConfig
     }))
