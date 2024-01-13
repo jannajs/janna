@@ -58,6 +58,7 @@
     "@commitlint/is-ignored": "^18.4.4",
     "commander": "^11.1.0",
     "consola": "^3.2.3",
+    "glob": "^10.3.10",
     "husky": "^8.0.3",
     "mrm-core": "^7.1.22",
     "os-locale": "^6.0.2",

@@ -2,9 +2,10 @@ import janna from '@jannajs/lint/eslint'
 
 export default janna({
   next: {
-    dirs: [
+    rootDir: [
       'demos/with-nextjs',
     ],
+    cwd: __dirname,
   },
   tailwind: {
     dirs: [
