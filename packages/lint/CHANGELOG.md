@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- Migrate to eslint flat config
+
 ## 2.3.9
 
 ### Patch Changes

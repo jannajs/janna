@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@jannajs/lint": "2.3.9",
+    "@jannajs/tsconfig": "0.0.1"
+  },
+  "changesets": [
+    "thick-games-impress"
+  ]
+}
