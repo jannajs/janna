@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.3
+
+### Patch Changes
+
+- 📦 refactor: external and esm support only
+
 ## 3.0.0-next.2
 
 ### Patch Changes
