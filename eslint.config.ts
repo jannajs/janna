@@ -12,4 +12,8 @@ export default janna({
       'demos/with-nextjs',
     ],
   },
+  ignores: [
+    'bin',
+    'dist',
+  ],
 })

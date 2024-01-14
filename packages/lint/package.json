@@ -18,13 +18,11 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": "./dist/index.js"
     },
     "./eslint": {
       "types": "./dist/eslint/index.d.ts",
-      "import": "./dist/eslint/index.js",
-      "require": "./dist/eslint/index.cjs"
+      "import": "./dist/eslint/index.js"
     },
     "./*": "./*"
   },
