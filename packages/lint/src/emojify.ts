@@ -1,4 +1,4 @@
-import fse from 'fs-extra'
+import { fs } from 'zx'
 import _isIgnored from '@commitlint/is-ignored'
 
 /** ref: https://github.com/vitejs/vite-plugin-react-pages/issues/64#issuecomment-1222089552 */
@@ -20,7 +20,7 @@ const emojiMap = {
 }
 
 export function emojify(msgPath: string) {
-  const msg = fse.readFileSync(msgPath, 'utf-8').trim()
+  const msg = fs.readFileSync(msgPath, 'utf-8').trim()
 
   if (isIgnored(msg)) {
     return
@@ -31,6 +31,6 @@ export function emojify(msgPath: string) {
     | undefined
 
   if (key) {
-    fse.writeFileSync(msgPath, `${emojiMap[key]} ${msg}`)
+    fs.writeFileSync(msgPath, `${emojiMap[key]} ${msg}`)
   }
 }

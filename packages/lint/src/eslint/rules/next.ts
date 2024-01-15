@@ -1,9 +1,9 @@
 import process from 'node:process'
 import path from 'node:path'
 import type { Linter } from 'eslint'
+import { glob } from 'zx'
 
 import { FlatCompat } from '@eslint/eslintrc'
-import { glob } from 'glob'
 import { ALL_JS } from '../constants'
 
 const compat = new FlatCompat()
@@ -17,7 +17,7 @@ function processRootDir(rootDir: string, cwd?: string): string[] {
     rootDir += '/'
   }
 
-  return glob.sync(rootDir, { cwd })
+  return glob.globbySync(rootDir, { cwd })
 }
 
 export interface GetNextFlatConfigsOptions {

@@ -1,5 +1,4 @@
-import fs from 'fs-extra'
-import { chalk, glob } from 'zx'
+import { chalk, fs, glob } from 'zx'
 import consola from 'consola'
 
 function toDest(file: string) {

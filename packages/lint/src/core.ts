@@ -2,10 +2,9 @@
 
 import { fileURLToPath } from 'node:url'
 import process from 'node:process'
-import fse from 'fs-extra'
 import mrmCore from 'mrm-core'
 import * as husky from 'husky'
-import { $, path } from 'zx'
+import { $, fs, path } from 'zx'
 
 import { isMonorepo } from './utils'
 
@@ -13,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 function copyPackageFile(fileName: string) {
-  fse.copyFileSync(
+  fs.copyFileSync(
     path.join(__dirname, 'templates', fileName),
     `${process.cwd()}/${fileName}`,
   )
@@ -44,7 +43,7 @@ export async function installDevDependencies(deps: string[]) {
 }
 
 export async function installPeerDependencies() {
-  const { peerDependencies } = fse.readJsonSync(
+  const { peerDependencies } = fs.readJsonSync(
     path.join(__dirname, '..', 'package.json'),
   )
 
@@ -72,7 +71,7 @@ export async function installPeerDependencies() {
  * 保证其他实现可基于该函数封装，因此需要支持传入 cliName
  */
 export function configureLintStaged(cliName?: string) {
-  const { name } = fse.readJsonSync(path.join(__dirname, '..', 'package.json'))
+  const { name } = fs.readJsonSync(path.join(__dirname, '..', 'package.json'))
 
   const mergedName = cliName || name
 
