@@ -9,15 +9,15 @@ import { ALL_JS } from '../constants'
 const compat = new FlatCompat()
 
 /**
- * Process a Next.js root directory glob.
+ * ref: https://github.com/vercel/next.js/blob/fe7322650b407a44a1900ef1ef09d19ca4c56e99/packages/eslint-plugin-next/src/utils/get-root-dirs.ts#L7
  */
 function processRootDir(rootDir: string, cwd?: string): string[] {
-  // Ensures we only match folders.
-  if (!rootDir.endsWith('/')) {
-    rootDir += '/'
-  }
-
-  return glob.globbySync(rootDir, { cwd })
+  // 与原实现等价的操作
+  return glob.globbySync(rootDir, {
+    cwd,
+    onlyDirectories: true,
+    expandDirectories: false,
+  })
 }
 
 export interface GetNextFlatConfigsOptions {
@@ -117,11 +117,8 @@ export function getNextFlatConfigs(
           // next/core-web-vitals
           '@next/next/no-html-link-for-pages': 'error',
           '@next/next/no-sync-scripts': 'error',
-
-          // Next.js 规范可以导出多个对象
-          'react-refresh/only-export-components': 'off',
-        } satisfies Linter.RulesRecord,
-      }
+        },
+      } satisfies Linter.FlatConfig
     }))
     return rules
   }
