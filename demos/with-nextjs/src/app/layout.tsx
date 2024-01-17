@@ -20,8 +20,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-const a = `
-  hello
-  world
-`

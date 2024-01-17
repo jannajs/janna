@@ -1,20 +1,9 @@
 /* eslint-disable no-console */
-// eslint-disable-next-line unicorn/prefer-node-protocol
-import process from 'process'
+import process from 'node:process'
 import Image from 'next/image'
+import type { GetServerSideProps } from 'next'
 
-async function getData() {
-  console.log('cwd', process.cwd())
-
-  return {
-    hello: 'world',
-  }
-}
-
-export default async function Home() {
-  const data = await getData()
-  console.log('🚀 ~ Home ~ data:', data)
-
+export default function Hello() {
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <div className='z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex'>
@@ -42,7 +31,6 @@ export default async function Home() {
           </a>
         </div>
       </div>
-
       <div className="before:bg-gradient-radial after:bg-gradient-conic relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:lg:h-[360px] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40">
         <Image
           className='relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert'
@@ -129,4 +117,14 @@ export default async function Home() {
       </div>
     </main>
   )
+}
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const getServerSideProps: GetServerSideProps = async () => {
+  console.log('cwd', process.cwd())
+  return {
+    props: {
+      hello: 'world',
+    },
+  }
 }
