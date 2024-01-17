@@ -19,15 +19,16 @@
   "eslint.rules.customizations": [
     // 存在部分暂时不能自动修复的，比如 style/max-statements-per-line
     // { "rule": "style/*", "severity": "off" },
-    { "rule": "format/*", "severity": "off" },
-    { "rule": "*-indent", "severity": "off" },
-    { "rule": "*-spacing", "severity": "off" },
-    { "rule": "*-spaces", "severity": "off" },
-    { "rule": "*-order", "severity": "off" },
-    { "rule": "*-dangle", "severity": "off" },
-    { "rule": "*-newline", "severity": "off" },
-    { "rule": "*quotes", "severity": "off" },
-    { "rule": "*semi", "severity": "off" }
+    // 开发环境不宜隐藏
+    // { "rule": "format/*", "severity": "off" },
+    // { "rule": "*-indent", "severity": "off" },
+    // { "rule": "*-spacing", "severity": "off" },
+    // { "rule": "*-spaces", "severity": "off" },
+    // { "rule": "*-order", "severity": "off" },
+    // { "rule": "*-dangle", "severity": "off" },
+    // { "rule": "*-newline", "severity": "off" },
+    // { "rule": "*quotes", "severity": "off" },
+    // { "rule": "*semi", "severity": "off" }
   ],
 
   // Enable eslint for all supported languages

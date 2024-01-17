@@ -14,43 +14,47 @@ export default async function janna(
 ) {
   const { next, tailwind, ...antfuOptions } = options
 
-  const result = await antfu({
-    react: {
-      overrides: {
-        'react/prop-types': 'off',
+  const result = await antfu(
+    {
+      react: {
+        overrides: {
+          'react/prop-types': 'off',
+        },
       },
-    },
-    vue: false,
-    // 当前通过 prettier 格式化 CSS HTML 和 Markdown
-    // 同时 VS Code 开启 eslint 校验以下格式，使得保存时能够自动格式化处理
-    formatters: {
+      vue: false,
+      // 当前通过 prettier 格式化 CSS HTML 和 Markdown
+      // 同时 VS Code 开启 eslint 校验以下格式，使得保存时能够自动格式化处理
+      formatters: {
       /**
        * Format CSS, LESS, SCSS files, also the `<style>` blocks in Vue
        * By default uses Prettier
        */
-      css: true,
-      /**
-       * Format HTML files
-       * By default uses Prettier
-       */
-      html: true,
-      /**
-       * Format Markdown files
-       * Supports Prettier and dprint
-       * By default uses Prettier
-       */
-      markdown: 'prettier',
-    },
-    overrides: {
-      // 外部 stylistic 没有重写配置
-      stylistic: {
-        curly: ['error', 'all'],
+        css: true,
+        /**
+         * Format HTML files
+         * By default uses Prettier
+         */
+        html: true,
+        /**
+         * Format Markdown files
+         * Supports Prettier and dprint
+         * By default uses Prettier
+         */
+        markdown: 'prettier',
       },
+      overrides: {
+      // 外部 stylistic 没有重写配置
+        stylistic: {
+          curly: ['error', 'all'],
+        },
+      },
+      ...antfuOptions,
     },
-    ...antfuOptions,
-  }, getNextFlatConfigs({ next }), getTailwindFlatConfigs({ tailwind }), { rules:
+    getNextFlatConfigs({ next }),
+    getTailwindFlatConfigs({ tailwind }),
+    {
       // 交互优化
-      {
+      rules: {
         // 重写
         // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
         'style/arrow-parens': ['error', 'always'],
@@ -66,6 +70,9 @@ export default async function janna(
         'unicorn/custom-error-definition': 'warn',
         'react/self-closing-comp': 'warn',
         'react/destructuring-assignment': 'error',
-      } }, ...userConfigs)
+      },
+    },
+    ...userConfigs,
+  )
   return result
 }
