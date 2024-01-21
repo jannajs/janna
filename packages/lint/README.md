@@ -30,7 +30,7 @@ $ npx eslint-flat-config-viewer
 
 因此，目前的建议是如果是个人项目，可以尝试无 prettier 的方式，如果需要多人协作，还是应该结合 prettier 格式化代码。可通过 `npx --no -- @jannajs/lint init --prettier` 来初始化代码规范，内部会自动禁用掉 [ESLint Stylistic](https://github.com/eslint-stylistic/eslint-stylistic) 的规则。此时推荐如下 VS Code 配置：
 
-```json
+```json5
 {
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
