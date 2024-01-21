@@ -1,11 +1,12 @@
 {
   "extends": "@jannajs/tsconfig/node.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@jannajs/lint/eslint": ["./src/eslint"]
     },
-    "outDir": "dist"
+    "outDir": "./dist"
   },
-  "include": ["src", "*.d.ts"],
+  "include": ["src"],
   "exclude": ["dist", "build", "node_modules"]
 }

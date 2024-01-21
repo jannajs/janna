@@ -2,19 +2,22 @@
 
 import { fileURLToPath } from 'node:url'
 import process from 'node:process'
+
 import mrmCore from 'mrm-core'
 import * as husky from 'husky'
 import { $, fs, path } from 'zx'
 
 import { isMonorepo } from './utils'
 
+import type packageJson from '../package.json'
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-function copyPackageFile(fileName: string) {
+function copyPackageFile(fileName: string, renameTo = fileName) {
   fs.copyFileSync(
     path.join(__dirname, 'templates', fileName),
-    `${process.cwd()}/${fileName}`,
+    `${process.cwd()}/${renameTo}`,
   )
 }
 
@@ -23,9 +26,20 @@ export function generateEditorConfig() {
   copyPackageFile(configFileName)
 }
 
-export function generateESLintConfig() {
-  const configFileName = 'eslint.config.ts'
+export function generatePrettierConfig() {
+  const configFileName = '.prettierrc.mjs'
   copyPackageFile(configFileName)
+}
+
+export interface GenerateESLintConfig extends InstallPeerDependenciesOptions {
+  prettier?: boolean
+}
+
+export function generateESLintConfig(options: GenerateESLintConfig = {}) {
+  const { prettier } = options
+  const trueName = 'eslint.config.ts'
+  const configFileName = prettier ? 'eslint.config.with-eslint.ts' : trueName
+  copyPackageFile(configFileName, trueName)
 }
 
 export function generateCommitLintConfig() {
@@ -42,12 +56,18 @@ export async function installDevDependencies(deps: string[]) {
   }
 }
 
-export async function installPeerDependencies() {
-  const { peerDependencies } = fs.readJsonSync(
-    path.join(__dirname, '..', 'package.json'),
-  )
+export interface InstallPeerDependenciesOptions {
+  prettier?: boolean
+}
 
-  const mergedPeerDependencies = {
+export async function installPeerDependencies(options: InstallPeerDependenciesOptions = {}) {
+  const { prettier } = options
+
+  const { peerDependencies, devDependencies } = fs.readJsonSync(
+    path.join(__dirname, '..', 'package.json'),
+  ) as typeof packageJson
+
+  const mergedPeerDependencies: Record<string, string> = {
     ...peerDependencies,
     // 如果在 peerDependencies 设置 eslint: 'npm:eslint-ts-patch@^8.56.0-0'
     // 目前 pnpm 安装依赖会报警告：
@@ -58,7 +78,11 @@ export async function installPeerDependencies() {
     //   └── ✕ unmet peer eslint@npm:eslint-ts-patch@^8.56.0-0: found 8.56.0-0
     //
     // 因此将 patch 逻辑放到代码中
-    eslint: `npm:eslint-ts-patch@${peerDependencies['eslint-ts-patch']}`,
+    eslint: devDependencies.eslint,
+  }
+
+  if (prettier) {
+    mergedPeerDependencies.prettier = devDependencies.prettier
   }
 
   const deps = Object.keys(mergedPeerDependencies).map((peer) => {
@@ -67,35 +91,57 @@ export async function installPeerDependencies() {
   await installDevDependencies(deps)
 }
 
-/**
- * 保证其他实现可基于该函数封装，因此需要支持传入 cliName
- */
-export function configureLintStaged(cliName?: string) {
-  const { name } = fs.readJsonSync(path.join(__dirname, '..', 'package.json'))
+export interface PreparePackageJsonOptions extends InstallPeerDependenciesOptions {
+}
 
-  const mergedName = cliName || name
+export function preparePackageJson(options: PreparePackageJsonOptions = {}) {
+  const { prettier } = options
+
+  const { name } = fs.readJsonSync(path.join(__dirname, '..', 'package.json'))
 
   husky.install()
 
   // ref: https://typicode.github.io/husky
   // Yarn 2+ doesn't support prepare lifecycle script
-  mrmCore
+  const packageJson = mrmCore
     .packageJson()
-    .setScript('prepare', 'husky install')
-    .setScript('lint-staged', 'lint-staged')
-    .setScript('lint-staged:lint', 'eslint')
+
+  packageJson.setScript('prepare', 'husky install')
     .setScript('lint', `eslint .`)
     .setScript('lint:fix', `eslint --fix .`)
-    .set('lint-staged', {
-      [`*`]: 'npm run lint-staged:lint',
+
+  if (prettier) {
+    packageJson.setScript(
+      'prettier',
+        `prettier . --check`,
+    )
+      .setScript(
+        'prettier:fix',
+        `prettier . --write`,
+      )
+  }
+
+  if (prettier) {
+    // ref: https://github.com/lint-staged/lint-staged/issues/934#issuecomment-1097793208
+    packageJson.set('lint-staged', {
+      [`*,__parallel-1__`]: 'prettier --write',
+      [`*,__parallel-2__`]: 'eslint',
     })
-    .save()
+  }
+  else {
+    packageJson.set('lint-staged', {
+      [`*`]: 'eslint',
+    })
+  }
 
-  husky.set('.husky/pre-commit', ['npx lint-staged'].join('\n'))
+  packageJson.save()
 
+  husky.set('.husky/pre-commit', 'npx --no -- lint-staged')
+  // https://github.com/conventional-changelog/commitlint#add-hook
+  // Why double hyphen? ref: https://github.com/typicode/husky/issues/1157
   husky.set(
     '.husky/commit-msg',
-    ['npx --no -- commitlint --edit $1', `npx ${mergedName} emojify $1`].join(
+    ['npx --no -- commitlint --edit $1', `npx --no -- ${name} emojify $1`].join(
       '\n',
     ),
   )

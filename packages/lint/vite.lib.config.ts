@@ -1,15 +1,21 @@
 import { path } from 'zx'
-
 import { mergeConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 
-import type { UserConfig } from 'vite'
 import baseConfig from './vite.base.config'
+
+import type { UserConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default mergeConfig(baseConfig, {
   plugins: [dts({
     exclude: 'src/templates/**',
+    beforeWriteFile: (filePath, content) => {
+      return {
+        filePath: filePath.replace('dist/src/', 'dist/'),
+        content,
+      }
+    },
   })],
   build: {
     minify: false,

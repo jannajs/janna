@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import process from 'node:process'
+
 import Image from 'next/image'
+
 import type { GetServerSideProps } from 'next'
 
 export default function Hello() {

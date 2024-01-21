@@ -1,10 +1,15 @@
-import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config'
 import antfu from '@antfu/eslint-config'
-import type { GetNextFlatConfigsOptions } from './rules/next'
-import { getNextFlatConfigs } from './rules/next'
-import { type GetTailwindFlatConfigsOptions, getTailwindFlatConfigs } from './rules/tailwind'
 
-export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions {}
+import { getNextFlatConfigs } from './rules/next'
+import { getTailwindFlatConfigs } from './rules/tailwind'
+
+import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config'
+import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
+import type { GetNextFlatConfigsOptions } from './rules/next'
+
+export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions {
+  prettier?: boolean
+}
 
 // 基于 @antfu/eslint-config 定制功能
 // 旨在使得代码具备更好的交互性
@@ -12,42 +17,45 @@ export default async function janna(
   options: OptionsConfig & FlatConfigItem & JannaOptions = {},
   ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
 ) {
-  const { next, tailwind, ...antfuOptions } = options
+  const { next, tailwind, prettier = false, ...antfuOptions } = options
 
   const result = await antfu(
     {
+      stylistic: prettier
+        ? false
+        : {
+            overrides: {
+              curly: ['error', 'all'],
+            },
+          },
       react: {
         overrides: {
           'react/prop-types': 'off',
         },
       },
       vue: false,
-      // 当前通过 prettier 格式化 CSS HTML 和 Markdown
-      // 同时 VS Code 开启 eslint 校验以下格式，使得保存时能够自动格式化处理
-      formatters: {
-      /**
-       * Format CSS, LESS, SCSS files, also the `<style>` blocks in Vue
-       * By default uses Prettier
-       */
-        css: true,
-        /**
-         * Format HTML files
-         * By default uses Prettier
-         */
-        html: true,
-        /**
-         * Format Markdown files
-         * Supports Prettier and dprint
-         * By default uses Prettier
-         */
-        markdown: 'prettier',
-      },
-      overrides: {
-      // 外部 stylistic 没有重写配置
-        stylistic: {
-          curly: ['error', 'all'],
-        },
-      },
+      formatters: prettier
+        ? false
+        : {
+          // 如果项目不启用 prettier，内部通过 eslint-plugin-format 格式化 CSS HTML 和 Markdown
+          // 同时 VS Code 开启 eslint 校验以下格式，使得保存时能够自动格式化处理
+            /**
+             * Format CSS, LESS, SCSS files, also the `<style>` blocks in Vue
+             * By default uses Prettier
+             */
+            css: true,
+            /**
+             * Format HTML files
+             * By default uses Prettier
+             */
+            html: true,
+            /**
+             * Format Markdown files
+             * Supports Prettier and dprint
+             * By default uses Prettier
+             */
+            markdown: 'prettier',
+          },
       ...antfuOptions,
     },
     getNextFlatConfigs({ next }),
@@ -70,6 +78,22 @@ export default async function janna(
         'unicorn/custom-error-definition': 'warn',
         'react/self-closing-comp': 'warn',
         'react/destructuring-assignment': 'error',
+        'import/order': [
+          'warn',
+          {
+            'groups': [
+              'builtin',
+              'external',
+              'internal',
+              'parent',
+              'sibling',
+              'index',
+              'object',
+              'type',
+            ],
+            'newlines-between': 'always',
+          },
+        ],
       },
     },
     ...userConfigs,

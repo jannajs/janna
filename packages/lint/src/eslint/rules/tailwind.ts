@@ -1,7 +1,8 @@
-import type { Linter } from 'eslint'
-
 import { FlatCompat } from '@eslint/eslintrc'
+
 import { ALL_JS } from '../constants'
+
+import type { Linter } from 'eslint'
 
 const compat = new FlatCompat()
 

@@ -6,20 +6,20 @@ const isIgnored = ((_isIgnored as any).default
   || _isIgnored) as typeof _isIgnored
 
 const emojiMap = {
-  build: '🛠',
-  chore: '♻️',
-  ci: '⚙️',
-  docs: '📚',
   feat: '✨',
   fix: '🐛',
-  perf: '🚀',
-  refactor: '📦',
-  revert: '⏪️',
+  docs: '📚',
   style: '💎',
+  refactor: '📦',
+  perf: '🚀',
   test: '🚨',
+  build: '🛠',
+  ci: '⚙️',
+  chore: '♻️',
+  revert: '🗑',
 }
 
-export function emojify(msgPath: string) {
+export function commitMsgPathEmojify(msgPath: string) {
   const msg = fs.readFileSync(msgPath, 'utf-8').trim()
 
   if (isIgnored(msg)) {

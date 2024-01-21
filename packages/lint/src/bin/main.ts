@@ -1,53 +1,59 @@
 import { fileURLToPath } from 'node:url'
+
 import { chalk, fs, path } from 'zx'
 
-import consola from 'consola'
-
 import {
-  configureLintStaged,
   generateCommitLintConfig,
   generateESLintConfig,
   generateEditorConfig,
   installPeerDependencies,
+  preparePackageJson,
+} from '../core'
+import { getLogger } from '../log'
+
+import type {
+  InstallPeerDependenciesOptions,
 } from '../core'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export default async function init() {
+export interface InitOptions extends InstallPeerDependenciesOptions {
+}
+
+export default async function init(options: InitOptions = {}) {
+  const { prettier } = options
+
+  const logger = getLogger()
+
   generateEditorConfig()
-  consola.info(
-    chalk.green('[janna:lint]'),
-    chalk.bold('Generate editor config `.editorconfig` done'),
+  logger.info(
+    chalk.bold('Generate editor config [.editorconfig] done'),
   )
 
-  await installPeerDependencies()
-  consola.info(
-    chalk.green('[janna:lint]'),
-    chalk.bold('install peer dependencies done'),
+  await installPeerDependencies({ prettier })
+  logger.info(
+    chalk.bold('Install peer dependencies done'),
   )
-  generateESLintConfig()
-  consola.info(
-    chalk.green('[janna:lint]'),
-    chalk.bold('Generate eslint config `.eslintrc.yaml` done'),
+  generateESLintConfig({ prettier })
+  logger.info(
+    chalk.bold('Generate eslint config [eslint.config.ts] done'),
   )
 
   generateCommitLintConfig()
-  consola.info(
-    chalk.green('[janna:lint]'),
-    chalk.bold('Generate commitlint config `commitlint.config.ts` done'),
+  logger.info(
+    chalk.bold('Generate commitlint config [commitlint.config.ts] done'),
   )
 
-  configureLintStaged()
-  consola.info(
-    chalk.green('[janna:lint]'),
-    chalk.bold('configure lint-stage done'),
+  preparePackageJson()
+  logger.info(
+    chalk.bold('Prepare [package.json] done'),
   )
 
   const { name, version } = fs.readJsonSync(
     path.join(__dirname, '../..', 'package.json'),
   )
-  consola.info('\n')
-  consola.info(chalk.bold(`${name} v${version}`))
-  consola.info('\n')
+  logger.info('\n')
+  logger.info(chalk.bold(`${name} v${version}`))
+  logger.info('\n')
 }

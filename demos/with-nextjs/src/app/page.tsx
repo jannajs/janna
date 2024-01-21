@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import process from 'process'
+
 import Image from 'next/image'
 
 async function getData() {
