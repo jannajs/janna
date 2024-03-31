@@ -4,7 +4,7 @@ import { fs, path } from 'zx'
 import mrmCore from 'mrm-core'
 
 function checkProjectRootFile(filePath: string) {
-  return fs.existsSync(path.join(process.cwd() || '.', filePath))
+  return fs.existsSync(path.join(process.cwd(), filePath))
 }
 
 export const isTsProject = checkProjectRootFile('./tsconfig.json')

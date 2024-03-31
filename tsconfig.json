@@ -1,3 +1,6 @@
 {
-  "extends": "@jannajs/tsconfig/node.json"
+  "extends": "@jannajs/tsconfig/node.json",
+  "compilerOptions": {
+    "noEmit": true
+  }
 }

@@ -3,7 +3,6 @@ import antfu from '@antfu/eslint-config'
 import { getNextFlatConfigs } from './rules/next'
 import { getTailwindFlatConfigs } from './rules/tailwind'
 
-import type { Awaitable, FlatConfigItem, OptionsConfig, UserConfigItem } from '@antfu/eslint-config'
 import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 import type { GetNextFlatConfigsOptions } from './rules/next'
 
@@ -14,8 +13,8 @@ export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlat
 // 基于 @antfu/eslint-config 定制功能
 // 旨在使得代码具备更好的交互性
 export default async function janna(
-  options: OptionsConfig & FlatConfigItem & JannaOptions = {},
-  ...userConfigs: Awaitable<UserConfigItem | UserConfigItem[]>[]
+  options: Parameters<typeof antfu>[0] & JannaOptions = {},
+  ...userConfigs: Parameters<typeof antfu>[1][]
 ) {
   const { next, tailwind, prettier = false, ...antfuOptions } = options
 

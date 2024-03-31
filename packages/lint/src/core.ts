@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import process from 'node:process'
 
 import mrmCore from 'mrm-core'
-import * as husky from 'husky'
+import husky from 'husky'
 import { $, fs, path } from 'zx'
 
 import { isMonorepo } from './utils'
@@ -94,12 +94,12 @@ export async function installPeerDependencies(options: InstallPeerDependenciesOp
 export interface PreparePackageJsonOptions extends InstallPeerDependenciesOptions {
 }
 
-export function preparePackageJson(options: PreparePackageJsonOptions = {}) {
+export async function preparePackageJson(options: PreparePackageJsonOptions = {}) {
   const { prettier } = options
 
   const { name } = fs.readJsonSync(path.join(__dirname, '..', 'package.json'))
 
-  husky.install()
+  husky()
 
   // ref: https://typicode.github.io/husky
   // Yarn 2+ doesn't support prepare lifecycle script
@@ -125,24 +125,24 @@ export function preparePackageJson(options: PreparePackageJsonOptions = {}) {
     // ref: https://github.com/lint-staged/lint-staged/issues/934#issuecomment-1097793208
     packageJson.set('lint-staged', {
       [`*,__parallel-1__`]: 'prettier --write',
-      [`*,__parallel-2__`]: 'eslint',
+      [`*,__parallel-2__`]: 'eslint --fix',
     })
   }
   else {
     packageJson.set('lint-staged', {
-      [`*`]: 'eslint',
+      [`*`]: 'eslint --fix',
     })
   }
 
   packageJson.save()
 
-  husky.set('.husky/pre-commit', 'npx --no -- lint-staged')
-  // https://github.com/conventional-changelog/commitlint#add-hook
-  // Why double hyphen? ref: https://github.com/typicode/husky/issues/1157
-  husky.set(
-    '.husky/commit-msg',
-    ['npx --no -- commitlint --edit $1', `npx --no -- ${name} emojify $1`].join(
+  const preCommitFile = path.join(process.cwd(), '.husky/pre-commit')
+  const commitMsgFile = path.join(process.cwd(), '.husky/commit-msg')
+
+  await Promise.all([
+    fs.writeFile(preCommitFile, 'npx --no -- lint-staged', 'utf-8'),
+    fs.writeFile(commitMsgFile, ['npx --no -- commitlint --edit $1', `npx --no -- ${name} emojify $1`].join(
       '\n',
-    ),
-  )
+    ), 'utf-8'),
+  ])
 }
