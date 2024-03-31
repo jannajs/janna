@@ -35,7 +35,6 @@ $ npx eslint-flat-config-viewer
   // Enable the ESlint flat config support
   "eslint.experimental.useFlatConfig": true,
 
-  // Prettier auto format
   "editor.formatOnSave": true,
 
   // Auto fix
