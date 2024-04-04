@@ -67,8 +67,13 @@ export default async function janna(
         'style/arrow-parens': ['error', 'always'],
         // 能使用单引号的地方都使用单引号
         'style/jsx-quotes': ['error', 'prefer-single'],
-        // 关闭变量未使用校验，方便后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
+        // 关闭变量未使用校验，避免后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
         'unused-imports/no-unused-vars': 'off',
+        // Lint conflict, ref: https://github.com/antfu/eslint-config/issues/440
+        'style/jsx-indent': ['error', 2, {
+          checkAttributes: false,
+          indentLogicalExpressions: true,
+        }],
 
         // 新增
         // https://github.com/prettier/prettier/issues/8207
