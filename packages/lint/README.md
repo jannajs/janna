@@ -20,8 +20,8 @@ $ npm i -D @jannajs/lint
 
 $ npx --no -- @jannajs/lint init
 
-# 查看当前项目的 eslint 规则详情
-$ npx eslint-flat-config-viewer
+# 审查当前项目的 eslint 规则详情
+$ npx @eslint/config-inspector
 ```
 
 ### VS Code 支持
