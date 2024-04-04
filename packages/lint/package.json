@@ -39,7 +39,7 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "peerDependencies": {
-    "@antfu/eslint-config": "^2.11.6",
+    "@antfu/eslint-config": "^2.12.1",
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@commitlint/types": "^19.0.3",
@@ -63,7 +63,7 @@
     "zx": "^7.2.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.11.6",
+    "@antfu/eslint-config": "^2.12.1",
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@commitlint/types": "^19.0.3",
