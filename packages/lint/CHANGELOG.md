@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.6
+
+### Patch Changes
+
+- fix conflict and update @antfu/eslint-config
+
 ## 3.0.0-next.5
 
 ### Patch Changes
