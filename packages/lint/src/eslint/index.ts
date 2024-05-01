@@ -80,8 +80,9 @@ export default async function janna(
         'unicorn/template-indent': ['warn', { tags: [], functions: [], selectors: ['TemplateLiteral'] }],
         'unicorn/no-lonely-if': 'warn',
         'unicorn/custom-error-definition': 'warn',
-        'react/self-closing-comp': 'warn',
-        'react/destructuring-assignment': 'error',
+        'style/jsx-self-closing-comp': 'warn',
+        // ref: https://github.com/Rel1cx/eslint-react/issues/85
+        'react/prefer-destructuring-assignment': 'error',
         'import/order': [
           'warn',
           {
