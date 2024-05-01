@@ -3,8 +3,12 @@ import process from 'node:process'
 import { fs, path } from 'zx'
 import mrmCore from 'mrm-core'
 
-function checkProjectRootFile(filePath: string) {
-  return fs.existsSync(path.join(process.cwd(), filePath))
+export function getProjectRootFilePath(filePath: string) {
+  return path.join(process.cwd(), filePath)
+}
+
+export function checkProjectRootFile(filePath: string) {
+  return fs.existsSync(getProjectRootFilePath(filePath))
 }
 
 export const isTsProject = checkProjectRootFile('./tsconfig.json')

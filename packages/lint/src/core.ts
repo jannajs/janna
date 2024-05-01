@@ -7,7 +7,7 @@ import mrmCore from 'mrm-core'
 import husky from 'husky'
 import { $, fs, path } from 'zx'
 
-import { isMonorepo } from './utils'
+import { getProjectRootFilePath, isMonorepo } from './utils'
 
 import type packageJson from '../package.json'
 
@@ -98,6 +98,8 @@ export async function preparePackageJson(options: PreparePackageJsonOptions = {}
   const { prettier } = options
 
   const { name } = fs.readJsonSync(path.join(__dirname, '..', 'package.json'))
+
+  await fs.ensureDir(getProjectRootFilePath('.husky'))
 
   husky()
 
