@@ -14,7 +14,7 @@ const compat = new FlatCompat()
  * ref: https://github.com/vercel/next.js/blob/fe7322650b407a44a1900ef1ef09d19ca4c56e99/packages/eslint-plugin-next/src/utils/get-root-dirs.ts#L7
  */
 function processRootDir(rootDir: string, cwd?: string): string[] {
-  // 与原实现等价的操作
+  // 与引用中原实现等价的操作
   return glob.globbySync(rootDir, {
     cwd,
     onlyDirectories: true,
