@@ -53,13 +53,13 @@
   },
   "dependencies": {
     "@antfu/ni": "^0.21.12",
-    "@commitlint/is-ignored": "^19.0.3",
-    "commander": "^12.0.0",
+    "@commitlint/is-ignored": "^19.2.2",
+    "commander": "^12.1.0",
     "consola": "^3.2.3",
     "husky": "^9.0.11",
     "mrm-core": "^7.1.22",
     "os-locale": "^6.0.2",
-    "zx": "^7.2.3"
+    "zx": "^8.1.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.1",
@@ -77,12 +77,12 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "eslint-ts-patch": "9.4.0-0",
     "lint-staged": "^15.2.7",
-    "prettier": "^3.2.5",
-    "rimraf": "^5.0.5",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.3",
-    "vite": "^5.2.7",
-    "vite-plugin-dts": "^3.8.1",
+    "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
+    "tsx": "^4.15.5",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1",
+    "vite-plugin-dts": "^3.9.1",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "publishConfig": {
