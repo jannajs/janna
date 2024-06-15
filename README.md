@@ -1,8 +1,12 @@
-# janna
+# Janna
 
 Stylized toolkits to develop TS/JS packages.
 
-# build and publish
+## Packages
+
+- [@jannsjs/lint](./packages/lint/README.md)
+
+## Build and publish
 
 - `npm run build`
 - `npx changeset`
