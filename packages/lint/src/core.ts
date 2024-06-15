@@ -78,7 +78,9 @@ export async function installPeerDependencies(options: InstallPeerDependenciesOp
     //   └── ✕ unmet peer eslint@npm:eslint-ts-patch@^8.56.0-0: found 8.56.0-0
     //
     // 因此将 patch 逻辑放到代码中
-    eslint: devDependencies.eslint,
+    //
+    // 也不能写成 npm:eslint-ts-patch@x.x.x 安装，升级时版本不会生效
+    eslint: 'npm:eslint-ts-patch',
   }
 
   if (prettier) {

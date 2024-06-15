@@ -1,6 +1,7 @@
 {
   "name": "janna-monorepo",
   "type": "module",
+  "packageManager": "pnpm@9.3.0",
   "scripts": {
     "build": "turbo run build --filter=@jannajs/lint",
     "dev": "turbo run dev --no-cache --parallel --continue",
@@ -26,7 +27,7 @@
     "@jannajs/lint": "workspace:*",
     "@jannajs/tsconfig": "workspace:*",
     "@next/eslint-plugin-next": "^14.2.4",
-    "eslint": "npm:eslint-ts-patch@8.57.0-0",
+    "eslint": "npm:eslint-ts-patch@9.4.0-0",
     "eslint-plugin-format": "^0.1.1",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
