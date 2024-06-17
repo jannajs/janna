@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.8
+
+### Patch Changes
+
+- chore: update deps
+
 ## 3.0.0-next.7
 
 ### Minor Changes
