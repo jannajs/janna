@@ -38,7 +38,7 @@ export interface GenerateESLintConfig extends InstallPeerDependenciesOptions {
 export function generateESLintConfig(options: GenerateESLintConfig = {}) {
   const { prettier } = options
   const trueName = 'eslint.config.ts'
-  const configFileName = prettier ? 'eslint.config.with-eslint.ts' : trueName
+  const configFileName = prettier ? 'eslint.config.with-prettier.ts' : trueName
   copyPackageFile(configFileName, trueName)
 }
 
