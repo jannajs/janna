@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.10
+
+### Patch Changes
+
+- 🐛 fix: override rules with prettier
+
 ## 3.0.0-next.9
 
 ### Patch Changes
