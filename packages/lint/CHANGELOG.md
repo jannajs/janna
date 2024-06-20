@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.12
+
+### Patch Changes
+
+- 🐛 fix: downgrade eslint to v8
+
 ## 3.0.0-next.11
 
 ### Patch Changes
