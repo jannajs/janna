@@ -76,6 +76,7 @@ export default async function janna(
                   checkAttributes: false,
                   indentLogicalExpressions: true,
                 }],
+                'style/jsx-self-closing-comp': 'warn',
               }),
         // 关闭变量未使用校验，避免后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
         'unused-imports/no-unused-vars': 'off',
@@ -85,7 +86,6 @@ export default async function janna(
         'unicorn/template-indent': ['warn', { tags: [], functions: [], selectors: ['TemplateLiteral'] }],
         'unicorn/no-lonely-if': 'warn',
         'unicorn/custom-error-definition': 'warn',
-        'style/jsx-self-closing-comp': 'warn',
         // ref: https://github.com/Rel1cx/eslint-react/issues/85
         'react/prefer-destructuring-assignment': 'error',
         'import/order': [
