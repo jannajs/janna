@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.9
+
+### Patch Changes
+
+- 🐛 fix: eslint file name
+
 ## 3.0.0-next.8
 
 ### Patch Changes
