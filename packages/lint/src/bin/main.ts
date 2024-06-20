@@ -45,7 +45,9 @@ export default async function init(options: InitOptions = {}) {
     chalk.bold('Generate commitlint config [commitlint.config.ts] done'),
   )
 
-  await preparePackageJson()
+  await preparePackageJson({
+    prettier,
+  })
   logger.info(
     chalk.bold('Prepare [package.json] done'),
   )
