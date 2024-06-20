@@ -69,18 +69,7 @@ export async function installPeerDependencies(options: InstallPeerDependenciesOp
 
   const mergedPeerDependencies: Record<string, string> = {
     ...peerDependencies,
-    // 如果在 peerDependencies 设置 eslint: 'npm:eslint-ts-patch@^8.56.0-0'
-    // 目前 pnpm 安装依赖会报警告：
-    //
-    // WARN Issues with peer dependencies found
-    // .
-    // └─┬ @jannajs/lint 3.0.0-next.0
-    //   └── ✕ unmet peer eslint@npm:eslint-ts-patch@^8.56.0-0: found 8.56.0-0
-    //
-    // 因此将 patch 逻辑放到代码中
-    //
-    // 也不能写成 npm:eslint-ts-patch@x.x.x 安装，升级时版本不会生效
-    eslint: 'npm:eslint-ts-patch',
+    eslint: `npm:eslint-ts-patch@${peerDependencies['eslint-ts-patch']}`,
   }
 
   if (prettier) {
