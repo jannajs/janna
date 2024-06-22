@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.13
+
+### Patch Changes
+
+- 🐛 fix: preparePackageJson with prettier
+
 ## 3.0.0-next.12
 
 ### Patch Changes

@@ -6,6 +6,7 @@
     "@jannajs/tsconfig": "0.0.1"
   },
   "changesets": [
+    "famous-toys-hammer",
     "gorgeous-games-smash",
     "modern-swans-shop",
     "moody-carrots-mix",
