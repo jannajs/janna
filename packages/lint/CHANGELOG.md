@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.14
+
+### Patch Changes
+
+- ✨ feat: support isInEditorEnv
+
 ## 3.0.0-next.13
 
 ### Patch Changes
