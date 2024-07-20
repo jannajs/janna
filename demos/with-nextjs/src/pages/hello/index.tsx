@@ -13,7 +13,7 @@ export default function Hello() {
           Get started by editing&nbsp;
           <code className='font-mono font-bold'>src/app/page.tsx</code>
         </p>
-        <div className='fixed bottom-0 left-0 flex h-48 w-10 items-end justify-center bg-gradient-to-t from-white via-white lg:static lg:h-auto lg:w-auto lg:bg-none dark:from-black dark:via-black'>
+        <div className='fixed bottom-0 left-0 flex h-48 w-10 items-end justify-center bg-gradient-to-t from-white via-white lg:static lg:size-auto lg:bg-none dark:from-black dark:via-black'>
           <a
             className='pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0'
             href='https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app'
