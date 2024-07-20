@@ -1,5 +1,7 @@
 import antfu from '@antfu/eslint-config'
 
+import { isInEditorEnv } from '../utils'
+
 import { getNextFlatConfigs } from './rules/next'
 import { getTailwindFlatConfigs } from './rules/tailwind'
 
@@ -76,7 +78,7 @@ export default async function janna(
                   checkAttributes: false,
                   indentLogicalExpressions: true,
                 }],
-                'style/jsx-self-closing-comp': 'warn',
+                'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
               }),
         // 关闭变量未使用校验，避免后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
         'unused-imports/no-unused-vars': 'off',

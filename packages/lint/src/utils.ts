@@ -19,3 +19,7 @@ export const isNextProject
 
 /** 根据项目所在目录的 package.json 中的 workspaces 字段判断 */
 export const isMonorepo = mrmCore.packageJson().get('workspaces', []).length > 0
+
+export function isInEditorEnv() {
+  return !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM || process.env.NVIM) && !process.env.CI)
+}
