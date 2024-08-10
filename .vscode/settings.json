@@ -1,6 +1,8 @@
 {
-  "eslint.workingDirectories": ["./packages/lint"],
-  "eslint.debug": true,
+
+  "eslint.options": {
+    "flags": ["unstable_ts_config"]
+  },
 
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
