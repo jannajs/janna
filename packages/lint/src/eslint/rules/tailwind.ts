@@ -1,6 +1,5 @@
+import { GLOB_SRC } from '@antfu/eslint-config'
 import { FlatCompat } from '@eslint/eslintrc'
-
-import { ALL_JS } from '../constants'
 
 import type { Linter } from 'eslint'
 
@@ -25,7 +24,7 @@ export function getTailwindFlatConfigs(
 ) {
   const { tailwind } = options
 
-  const rules: Linter.FlatConfig[] = []
+  const rules: Linter.Config[] = []
 
   if (!tailwind) {
     return rules
@@ -44,13 +43,13 @@ export function getTailwindFlatConfigs(
         ...item,
         files: tailwind.dirs.filter(Boolean).map((dirItem) => {
           if (dirItem === '.') {
-            return ALL_JS
+            return GLOB_SRC
           }
 
           // html 格式需要等到 @angular-eslint/template-parser 适配
-          return `${dirItem}/${ALL_JS}`
+          return `${dirItem}/${GLOB_SRC}`
         }),
-      } satisfies Linter.FlatConfig
+      } satisfies Linter.Config
     }))
     return rules
   }

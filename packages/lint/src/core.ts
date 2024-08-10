@@ -69,7 +69,6 @@ export async function installPeerDependencies(options: InstallPeerDependenciesOp
 
   const mergedPeerDependencies: Record<string, string> = {
     ...peerDependencies,
-    eslint: `npm:eslint-ts-patch@${peerDependencies['eslint-ts-patch']}`,
   }
 
   if (prettier) {
@@ -100,8 +99,8 @@ export async function preparePackageJson(options: PreparePackageJsonOptions = {}
     .packageJson()
 
   packageJson.setScript('prepare', 'husky install')
-    .setScript('lint', `eslint .`)
-    .setScript('lint:fix', `eslint --fix .`)
+    .setScript('lint', `eslint --flag unstable_ts_config .`)
+    .setScript('lint:fix', `eslint --flag unstable_ts_config --fix .`)
 
   if (prettier) {
     packageJson.setScript(
@@ -118,7 +117,7 @@ export async function preparePackageJson(options: PreparePackageJsonOptions = {}
     // ref: https://github.com/lint-staged/lint-staged/issues/934#issuecomment-1097793208
     packageJson.set('lint-staged', {
       [`*,__parallel-1__`]: 'prettier --write',
-      [`*,__parallel-2__`]: 'eslint --fix',
+      [`*,__parallel-2__`]: 'eslint --flag unstable_ts_config --fix',
     })
   }
   else {

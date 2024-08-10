@@ -16,13 +16,15 @@
   },
   "bugs": "https://github.com/jannajs/janna/issues",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
     "./eslint": {
       "types": "./dist/eslint/index.d.ts",
-      "import": "./dist/eslint/index.js"
+      "import": "./dist/eslint/index.js",
+      "default": "./dist/eslint/index.js"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./*": "./*"
   },
@@ -39,51 +41,49 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "peerDependencies": {
-    "@antfu/eslint-config": "^2.21.1",
-    "@commitlint/cli": "^19.3.0",
+    "@antfu/eslint-config": "^2.25.0",
+    "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/types": "^19.0.3",
-    "@eslint-react/eslint-plugin": "^1.5.15",
-    "eslint-plugin-format": "^0.1.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "eslint-ts-patch": "^8.57.0-0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7"
+    "@eslint-react/eslint-plugin": "^1.9.1",
+    "eslint": "^9.9.0",
+    "eslint-plugin-format": "^0.1.2",
+    "eslint-plugin-react-hooks": "^5.1.0-beta-26f2496093-20240514",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "husky": "^9.1.4",
+    "lint-staged": "^15.2.8"
   },
   "dependencies": {
-    "@antfu/ni": "^0.21.12",
+    "@antfu/ni": "^0.22.1",
     "@commitlint/is-ignored": "^19.2.2",
     "commander": "^12.1.0",
     "consola": "^3.2.3",
-    "husky": "^9.0.11",
+    "husky": "^9.1.4",
     "mrm-core": "^7.1.22",
-    "os-locale": "^6.0.2",
-    "zx": "^8.1.2"
+    "zx": "^8.1.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.21.1",
-    "@commitlint/cli": "^19.3.0",
+    "@antfu/eslint-config": "^2.25.0",
+    "@commitlint/cli": "^19.4.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@commitlint/types": "^19.0.3",
-    "@eslint-react/eslint-plugin": "^1.5.15",
+    "@eslint-react/eslint-plugin": "^1.9.1",
     "@jannajs/tsconfig": "workspace:*",
-    "@types/eslint": "^8.56.6",
-    "@types/eslint__eslintrc": "^2.1.1",
+    "@types/eslint": "^9.6.0",
+    "@types/eslint__eslintrc": "^2.1.2",
     "@types/node": "^20.14.2",
-    "eslint": "npm:eslint-ts-patch@^8.57.0-0",
-    "eslint-plugin-format": "^0.1.1",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "eslint-ts-patch": "^8.57.0-0",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
-    "rimraf": "^5.0.7",
-    "tsx": "^4.15.5",
+    "eslint": "^9.9.0",
+    "eslint-plugin-format": "^0.1.2",
+    "eslint-plugin-react-hooks": "^5.1.0-beta-26f2496093-20240514",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "lint-staged": "^15.2.8",
+    "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.17.0",
     "typescript": "^5.4.5",
-    "vite": "^5.3.1",
-    "vite-plugin-dts": "^3.9.1",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite": "^5.3.4",
+    "vite-plugin-dts": "^4.0.2",
+    "vite-tsconfig-paths": "^5.0.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

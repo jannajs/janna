@@ -3,8 +3,7 @@ import path from 'node:path'
 
 import { glob } from 'zx'
 import { FlatCompat } from '@eslint/eslintrc'
-
-import { ALL_JS } from '../constants'
+import { GLOB_SRC } from '@antfu/eslint-config'
 
 import type { Linter } from 'eslint'
 
@@ -51,7 +50,7 @@ export function getNextFlatConfigs(
 ) {
   const { next } = options
 
-  const rules: Linter.FlatConfig[] = []
+  const rules: Linter.Config[] = []
 
   if (!next) {
     return rules
@@ -74,22 +73,23 @@ export function getNextFlatConfigs(
           .map((dir) => (typeof dir === 'string' ? processRootDir(dir, cwd) : []))
           .flat()
       }
+      const nextRootDir = rootDirs.map((item) => {
+        return path.join(mergedCwd, item)
+      })
 
       return {
         ...item,
         settings: {
           next: {
-            rootDir: rootDirs.map((item) => {
-              return path.join(mergedCwd, item)
-            }),
+            rootDir: nextRootDir,
           },
         },
         files: rootDirs.map((dirItem) => {
           if (dirItem === '.') {
-            return ALL_JS
+            return GLOB_SRC
           }
 
-          return `${dirItem}/${ALL_JS}`
+          return `${dirItem}/${GLOB_SRC}`
         }),
         // Customized from https://unpkg.com/@next/eslint-plugin-next@14.0.4/dist/index.js
         rules: {
@@ -117,10 +117,14 @@ export function getNextFlatConfigs(
           '@next/next/no-head-import-in-document': 'error',
           '@next/next/no-script-component-in-head': 'error',
           // next/core-web-vitals
-          '@next/next/no-html-link-for-pages': 'error',
+          '@next/next/no-html-link-for-pages': [
+            'error',
+            // ref: https://github.com/vercel/next.js/issues/68752
+            nextRootDir,
+          ],
           '@next/next/no-sync-scripts': 'error',
         },
-      } satisfies Linter.FlatConfig
+      } satisfies Linter.Config
     }))
     return rules
   }
