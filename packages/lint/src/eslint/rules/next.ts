@@ -65,8 +65,7 @@ export function getNextFlatConfigs(
 
     if (typeof rootDir === 'string') {
       rootDirs = processRootDir(rootDir, cwd)
-    }
-    else if (Array.isArray(rootDir)) {
+    } else if (Array.isArray(rootDir)) {
       rootDirs = rootDir
         .map((dir) => (typeof dir === 'string' ? processRootDir(dir, cwd) : []))
         .flat()

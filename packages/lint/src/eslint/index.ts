@@ -64,6 +64,7 @@ export default async function janna(
         // 重写
         ...(
           {
+            'style/brace-style': ['error', '1tbs'],
             // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
             'style/arrow-parens': ['error', 'always'],
             // 能使用单引号的地方都使用单引号
