@@ -45,7 +45,8 @@
     "css",
     "less",
     "scss",
-    "sass"
+    "sass",
+    "svg"
   ],
 
   "css.lint.unknownAtRules": "ignore"

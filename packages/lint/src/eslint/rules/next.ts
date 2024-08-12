@@ -57,26 +57,34 @@ export function getNextFlatConfigs(
   }
 
   if (typeof next === 'object') {
-    // 使用 compat.config('next') 报错
-    rules.push(...compat.plugins('@next/next').map((item) => {
-      const { rootDir, cwd } = next
+    const { rootDir, cwd } = next
 
-      const mergedCwd = cwd || process.cwd()
+    const mergedCwd = cwd || process.cwd()
 
-      let rootDirs = [mergedCwd]
+    let rootDirs = [mergedCwd]
 
-      if (typeof rootDir === 'string') {
-        rootDirs = processRootDir(rootDir, cwd)
-      }
-      else if (Array.isArray(rootDir)) {
-        rootDirs = rootDir
-          .map((dir) => (typeof dir === 'string' ? processRootDir(dir, cwd) : []))
-          .flat()
-      }
-      const nextRootDir = rootDirs.map((item) => {
-        return path.join(mergedCwd, item)
-      })
+    if (typeof rootDir === 'string') {
+      rootDirs = processRootDir(rootDir, cwd)
+    }
+    else if (Array.isArray(rootDir)) {
+      rootDirs = rootDir
+        .map((dir) => (typeof dir === 'string' ? processRootDir(dir, cwd) : []))
+        .flat()
+    }
+    const nextRootDir = rootDirs.map((item) => {
+      return path.join(mergedCwd, item)
+    })
 
+    rules.push(...compat.config({
+      extends: ['plugin:@next/next/core-web-vitals'],
+      rules: {
+        '@next/next/no-html-link-for-pages': [
+          'error',
+          // ref: https://github.com/vercel/next.js/issues/68752
+          nextRootDir,
+        ],
+      },
+    }).map((item) => {
       return {
         ...item,
         settings: {
@@ -88,42 +96,8 @@ export function getNextFlatConfigs(
           if (dirItem === '.') {
             return GLOB_SRC
           }
-
           return `${dirItem}/${GLOB_SRC}`
         }),
-        // Customized from https://unpkg.com/@next/eslint-plugin-next@14.0.4/dist/index.js
-        rules: {
-          // warnings
-          '@next/next/google-font-display': 'warn',
-          '@next/next/google-font-preconnect': 'warn',
-          '@next/next/next-script-for-ga': 'warn',
-          '@next/next/no-async-client-component': 'warn',
-          '@next/next/no-before-interactive-script-outside-document': 'warn',
-          '@next/next/no-css-tags': 'warn',
-          '@next/next/no-head-element': 'warn',
-          // '@next/next/no-html-link-for-pages': 'warn',
-          '@next/next/no-img-element': 'warn',
-          '@next/next/no-page-custom-font': 'warn',
-          '@next/next/no-styled-jsx-in-document': 'warn',
-          // '@next/next/no-sync-scripts': 'warn',
-          '@next/next/no-title-in-document-head': 'warn',
-          '@next/next/no-typos': 'warn',
-          '@next/next/no-unwanted-polyfillio': 'warn',
-          // errors
-          '@next/next/inline-script-id': 'error',
-          '@next/next/no-assign-module-variable': 'error',
-          '@next/next/no-document-import-in-page': 'error',
-          '@next/next/no-duplicate-head': 'error',
-          '@next/next/no-head-import-in-document': 'error',
-          '@next/next/no-script-component-in-head': 'error',
-          // next/core-web-vitals
-          '@next/next/no-html-link-for-pages': [
-            'error',
-            // ref: https://github.com/vercel/next.js/issues/68752
-            nextRootDir,
-          ],
-          '@next/next/no-sync-scripts': 'error',
-        },
       } satisfies Linter.Config
     }))
     return rules

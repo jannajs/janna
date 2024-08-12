@@ -4,6 +4,7 @@ import { isInEditorEnv } from '../utils'
 
 import { getNextFlatConfigs } from './rules/next'
 import { getTailwindFlatConfigs } from './rules/tailwind'
+import { getSvgFlatConfigs } from './rules/svg'
 
 import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 import type { GetNextFlatConfigsOptions } from './rules/next'
@@ -56,6 +57,7 @@ export default async function janna(
     },
     getNextFlatConfigs({ next }),
     getTailwindFlatConfigs({ tailwind }),
+    getSvgFlatConfigs(),
     {
       // 交互优化
       rules: {
