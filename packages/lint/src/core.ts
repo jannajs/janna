@@ -31,15 +31,9 @@ export function generatePrettierConfig() {
   copyPackageFile(configFileName)
 }
 
-export interface GenerateESLintConfig extends InstallPeerDependenciesOptions {
-  prettier?: boolean
-}
-
-export function generateESLintConfig(options: GenerateESLintConfig = {}) {
-  const { prettier } = options
-  const trueName = 'eslint.config.ts'
-  const configFileName = prettier ? 'eslint.config.with-prettier.ts' : trueName
-  copyPackageFile(configFileName, trueName)
+export function generateESLintConfig() {
+  const configFileName = 'eslint.config.ts'
+  copyPackageFile(configFileName)
 }
 
 export function generateCommitLintConfig() {
@@ -56,13 +50,7 @@ export async function installDevDependencies(deps: string[]) {
   }
 }
 
-export interface InstallPeerDependenciesOptions {
-  prettier?: boolean
-}
-
-export async function installPeerDependencies(options: InstallPeerDependenciesOptions = {}) {
-  const { prettier } = options
-
+export async function installPeerDependencies() {
   const { peerDependencies, devDependencies } = fs.readJsonSync(
     path.join(__dirname, '..', 'package.json'),
   ) as typeof packageJson
@@ -71,22 +59,13 @@ export async function installPeerDependencies(options: InstallPeerDependenciesOp
     ...peerDependencies,
   }
 
-  if (prettier) {
-    mergedPeerDependencies.prettier = devDependencies.prettier
-  }
-
   const deps = Object.keys(mergedPeerDependencies).map((peer) => {
     return `${peer}@${mergedPeerDependencies[peer as keyof typeof mergedPeerDependencies]}`
   })
   await installDevDependencies(deps)
 }
 
-export interface PreparePackageJsonOptions extends InstallPeerDependenciesOptions {
-}
-
-export async function preparePackageJson(options: PreparePackageJsonOptions = {}) {
-  const { prettier } = options
-
+export async function preparePackageJson() {
   const { name } = fs.readJsonSync(path.join(__dirname, '..', 'package.json'))
 
   await fs.ensureDir(getProjectRootFilePath('.husky'))
@@ -102,29 +81,9 @@ export async function preparePackageJson(options: PreparePackageJsonOptions = {}
     .setScript('lint', `eslint --flag unstable_ts_config .`)
     .setScript('lint:fix', `eslint --flag unstable_ts_config --fix .`)
 
-  if (prettier) {
-    packageJson.setScript(
-      'prettier',
-        `prettier . --check`,
-    )
-      .setScript(
-        'prettier:fix',
-        `prettier . --write`,
-      )
-  }
-
-  if (prettier) {
-    // ref: https://github.com/lint-staged/lint-staged/issues/934#issuecomment-1097793208
-    packageJson.set('lint-staged', {
-      [`*,__parallel-1__`]: 'prettier --write',
-      [`*,__parallel-2__`]: 'eslint --flag unstable_ts_config --fix',
-    })
-  }
-  else {
-    packageJson.set('lint-staged', {
-      [`*`]: 'eslint --fix',
-    })
-  }
+  packageJson.set('lint-staged', {
+    [`*`]: 'eslint --fix',
+  })
 
   packageJson.save()
 

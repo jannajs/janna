@@ -11,19 +11,10 @@ import {
 } from '../core'
 import { getLogger } from '../log'
 
-import type {
-  InstallPeerDependenciesOptions,
-} from '../core'
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export interface InitOptions extends InstallPeerDependenciesOptions {
-}
-
-export default async function init(options: InitOptions = {}) {
-  const { prettier } = options
-
+export default async function init() {
   const logger = getLogger()
 
   generateEditorConfig()
@@ -31,11 +22,11 @@ export default async function init(options: InitOptions = {}) {
     chalk.bold('Generate editor config [.editorconfig] done'),
   )
 
-  await installPeerDependencies({ prettier })
+  await installPeerDependencies()
   logger.info(
     chalk.bold('Install peer dependencies done'),
   )
-  generateESLintConfig({ prettier })
+  generateESLintConfig()
   logger.info(
     chalk.bold('Generate eslint config [eslint.config.ts] done'),
   )
@@ -45,9 +36,7 @@ export default async function init(options: InitOptions = {}) {
     chalk.bold('Generate commitlint config [commitlint.config.ts] done'),
   )
 
-  await preparePackageJson({
-    prettier,
-  })
+  await preparePackageJson()
   logger.info(
     chalk.bold('Prepare [package.json] done'),
   )

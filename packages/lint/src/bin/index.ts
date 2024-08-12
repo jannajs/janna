@@ -6,11 +6,9 @@ import main from './main'
 
 program
   .command('init')
-  .option('-p, --prettier', '使用 prettier，默认不使用', false)
   .description('项目 Lint 规范初始化')
-  .action((options) => {
-    const { prettier } = options
-    main({ prettier })
+  .action(() => {
+    main()
   })
 
 program
