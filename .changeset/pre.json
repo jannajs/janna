@@ -6,6 +6,7 @@
     "@jannajs/tsconfig": "0.0.1"
   },
   "changesets": [
+    "fair-toys-roll",
     "famous-toys-hammer",
     "gorgeous-games-smash",
     "little-clocks-turn",

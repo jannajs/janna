@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.15
+
+### Patch Changes
+
+- feat: no prettier and support svg format
+
 ## 3.0.0-next.14
 
 ### Patch Changes
