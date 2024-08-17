@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.16
+
+### Patch Changes
+
+- 📦 refactor: unify react rules
+
 ## 3.0.0-next.15
 
 ### Patch Changes
