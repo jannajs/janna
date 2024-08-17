@@ -30,6 +30,8 @@ export default async function janna(
       react: {
         overrides: {
           'react/prop-types': 'off',
+          // ref: https://github.com/Rel1cx/eslint-react/issues/85
+          'react/prefer-destructuring-assignment': 'error',
         },
       },
       vue: false,
@@ -84,8 +86,6 @@ export default async function janna(
         'unicorn/template-indent': ['warn', { tags: [], functions: [], selectors: ['TemplateLiteral'] }],
         'unicorn/no-lonely-if': 'warn',
         'unicorn/custom-error-definition': 'warn',
-        // ref: https://github.com/Rel1cx/eslint-react/issues/85
-        'react/prefer-destructuring-assignment': 'error',
         'import/order': [
           'warn',
           {
