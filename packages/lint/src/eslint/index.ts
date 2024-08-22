@@ -29,6 +29,7 @@ export default async function janna(
       },
       react: {
         overrides: {
+          /** 自定义重写 */
           'react/prop-types': 'off',
           // ref: https://github.com/Rel1cx/eslint-react/issues/85
           'react/prefer-destructuring-assignment': 'error',
@@ -63,25 +64,27 @@ export default async function janna(
     {
       // 交互优化
       rules: {
-        // 重写
         ...(
-          {
-            'style/brace-style': ['error', '1tbs'],
-            // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
-            'style/arrow-parens': ['error', 'always'],
-            // 能使用单引号的地方都使用单引号
-            'style/jsx-quotes': ['error', 'prefer-single'],
-            // Lint conflict, ref: https://github.com/antfu/eslint-config/issues/440
-            'style/jsx-indent': ['error', 2, {
-              checkAttributes: false,
-              indentLogicalExpressions: true,
-            }],
-            'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
-          }),
+          antfuOptions.stylistic === false
+            ? {}
+            : {
+                /** 自定义重写 */
+                'style/brace-style': ['error', '1tbs'],
+                // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
+                'style/arrow-parens': ['error', 'always'],
+                // 能使用单引号的地方都使用单引号
+                'style/jsx-quotes': ['error', 'prefer-single'],
+                // Lint conflict, ref: https://github.com/antfu/eslint-config/issues/440
+                'style/jsx-indent': ['error', 2, {
+                  checkAttributes: false,
+                  indentLogicalExpressions: true,
+                }],
+                'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
+              }),
+        /** 自定义重写 */
         // 关闭变量未使用校验，避免后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
         'unused-imports/no-unused-vars': 'off',
-
-        // 新增
+        /** 自定义新增 */
         // https://github.com/prettier/prettier/issues/8207
         'unicorn/template-indent': ['warn', { tags: [], functions: [], selectors: ['TemplateLiteral'] }],
         'unicorn/no-lonely-if': 'warn',
