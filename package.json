@@ -1,7 +1,7 @@
 {
   "name": "janna-monorepo",
   "type": "module",
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.8.0",
   "scripts": {
     "build": "turbo run build --filter=@jannajs/lint",
     "dev": "turbo run dev --no-cache --parallel --continue",
@@ -19,24 +19,24 @@
     "@changesets/cli": "^2.22.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.25.1",
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@commitlint/types": "^19.0.3",
-    "@eslint-react/eslint-plugin": "^1.9.1",
+    "@antfu/eslint-config": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@commitlint/types": "catalog:",
+    "@eslint-react/eslint-plugin": "catalog:",
     "@jannajs/lint": "workspace:*",
     "@jannajs/tsconfig": "workspace:*",
     "@next/eslint-plugin-next": "15.0.0-canary.111",
     "@types/node": "^20.14.11",
-    "eslint": "^9.9.0",
-    "eslint-plugin-format": "^0.1.2",
-    "eslint-plugin-react-hooks": "5.1.0-beta-26f2496093-20240514",
-    "eslint-plugin-react-refresh": "^0.4.9",
-    "eslint-plugin-tailwindcss": "^3.17.3",
-    "husky": "^9.1.4",
-    "lint-staged": "^15.2.8",
+    "eslint": "catalog:",
+    "eslint-plugin-format": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "eslint-plugin-react-refresh": "catalog:",
+    "eslint-plugin-tailwindcss": "^3.17.4",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
     "turbo": "^2.0.3",
-    "typescript": "^5.4.5"
+    "typescript": "catalog:"
   },
   "lint-staged": {
     "*": "eslint --flag unstable_ts_config --fix"
