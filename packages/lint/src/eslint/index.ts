@@ -5,11 +5,12 @@ import { isInEditorEnv } from '../utils'
 import { getNextFlatConfigs } from './rules/next'
 import { getTailwindFlatConfigs } from './rules/tailwind'
 import { getSvgFlatConfigs } from './rules/svg'
+import { type GetPrettierSrcFlatConfigsOptions, getPrettierSrcFlatConfigs } from './rules/prettier-src'
 
 import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 import type { GetNextFlatConfigsOptions } from './rules/next'
 
-export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions {
+export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions, GetPrettierSrcFlatConfigsOptions {
 }
 
 // 基于 @antfu/eslint-config 定制功能
@@ -18,7 +19,7 @@ export default async function janna(
   options: Parameters<typeof antfu>[0] & JannaOptions = {},
   ...userConfigs: Parameters<typeof antfu>[1][]
 ) {
-  const { next, tailwind, ...antfuOptions } = options
+  const { next, tailwind, prettierSrc, ...antfuOptions } = options
 
   const result = await antfu(
     {
@@ -63,12 +64,16 @@ export default async function janna(
          * By default uses Prettier
          */
         markdown: 'prettier',
+        prettierOptions: {
+          endOfLine: 'lf',
+        },
       },
       ...antfuOptions,
     },
     getNextFlatConfigs({ next }),
     getTailwindFlatConfigs({ tailwind }),
     getSvgFlatConfigs(),
+    getPrettierSrcFlatConfigs({ prettierSrc }),
     {
       // 交互优化
       rules: {
