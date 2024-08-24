@@ -78,7 +78,7 @@ export async function preparePackageJson() {
 
   const eslintCli = 'eslint --flag unstable_ts_config'
 
-  packageJson.setScript('prepare', 'husky install')
+  packageJson.setScript('prepare', 'husky init')
     .setScript('lint', `${eslintCli} .`)
     .setScript('lint:fix', `${eslintCli} .`)
 

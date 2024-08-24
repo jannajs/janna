@@ -9,7 +9,7 @@
     "lint:fix": "eslint --flag unstable_ts_config --fix .",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules",
-    "prepare": "husky install"
+    "prepare": "husky init"
   },
   "workspaces": [
     "apps/*",
