@@ -32,7 +32,6 @@ export default async function janna(
           'style/arrow-parens': ['error', 'always'],
           // 能使用单引号的地方都使用单引号
           'style/jsx-quotes': ['error', 'prefer-single'],
-          'style/jsx-indent': ['error', 2],
           'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
         },
       },
