@@ -1,7 +1,6 @@
 import antfu from '@antfu/eslint-config'
 
 import { isInEditorEnv } from '../utils'
-
 import { getNextFlatConfigs } from './rules/next'
 import { getPrettierSrcFlatConfigs, type GetPrettierSrcFlatConfigsOptions } from './rules/prettier-src'
 import { getTailwindFlatConfigs } from './rules/tailwind'
@@ -80,27 +79,27 @@ export default async function janna(
         /** 自定义重写 */
         // 关闭变量未使用校验，避免后续使用时还得去除前缀，如果保留前缀来使用也很奇怪
         'unused-imports/no-unused-vars': 'off',
+        'perfectionist/sort-imports': ['error', {
+          groups: [
+            'builtin',
+            'external',
+            'type',
+            ['internal', 'internal-type'],
+            ['parent', 'sibling', 'index'],
+            ['parent-type', 'sibling-type', 'index-type'],
+            'side-effect',
+            'object',
+            'unknown',
+          ],
+          newlinesBetween: 'always',
+          order: 'asc',
+          type: 'natural',
+        }],
         /** 自定义新增 */
         // https://github.com/prettier/prettier/issues/8207
         'unicorn/template-indent': ['warn', { tags: [], functions: [], selectors: ['TemplateLiteral'] }],
         'unicorn/no-lonely-if': 'warn',
         'unicorn/custom-error-definition': 'warn',
-        'import/order': [
-          'warn',
-          {
-            'groups': [
-              'builtin',
-              'external',
-              'internal',
-              'parent',
-              'sibling',
-              'index',
-              'object',
-              'type',
-            ],
-            'newlines-between': 'always',
-          },
-        ],
       },
     },
     ...userConfigs,
