@@ -3,12 +3,11 @@ import antfu from '@antfu/eslint-config'
 import { isInEditorEnv } from '../utils'
 
 import { getNextFlatConfigs } from './rules/next'
+import { getPrettierSrcFlatConfigs, type GetPrettierSrcFlatConfigsOptions } from './rules/prettier-src'
 import { getTailwindFlatConfigs } from './rules/tailwind'
-import { getSvgFlatConfigs } from './rules/svg'
-import { type GetPrettierSrcFlatConfigsOptions, getPrettierSrcFlatConfigs } from './rules/prettier-src'
 
-import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 import type { GetNextFlatConfigsOptions } from './rules/next'
+import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 
 export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions, GetPrettierSrcFlatConfigsOptions {
 }
@@ -23,18 +22,20 @@ export default async function janna(
 
   const result = await antfu(
     {
-      stylistic: {
-        overrides: {
-          'curly': ['error', 'all'],
-          /** 自定义重写 */
-          'style/brace-style': ['error', '1tbs'],
-          // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
-          'style/arrow-parens': ['error', 'always'],
-          // 能使用单引号的地方都使用单引号
-          'style/jsx-quotes': ['error', 'prefer-single'],
-          'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
-        },
-      },
+      stylistic: prettierSrc
+        ? false
+        : {
+            overrides: {
+              'curly': ['error', 'all'],
+              /** 自定义重写 */
+              'style/brace-style': ['error', '1tbs'],
+              // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
+              'style/arrow-parens': ['error', 'always'],
+              // 能使用单引号的地方都使用单引号
+              'style/jsx-quotes': ['error', 'prefer-single'],
+              'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
+            },
+          },
       react: {
         overrides: {
           /** 自定义重写 */
@@ -57,6 +58,7 @@ export default async function janna(
          * By default uses Prettier
          */
         html: true,
+        svg: true,
         /**
          * Format Markdown files
          * Supports Prettier and dprint
@@ -71,7 +73,6 @@ export default async function janna(
     },
     getNextFlatConfigs({ next }),
     getTailwindFlatConfigs({ tailwind }),
-    getSvgFlatConfigs(),
     getPrettierSrcFlatConfigs({ prettierSrc }),
     {
       // 交互优化
