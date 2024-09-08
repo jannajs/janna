@@ -1,7 +1,6 @@
 import { program } from 'commander'
 
 import { commitMsgPathEmojify } from '../commit-msg-path-emojify'
-
 import main from './main'
 
 program

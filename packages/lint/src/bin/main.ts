@@ -4,8 +4,8 @@ import { chalk, fs, path } from 'zx'
 
 import {
   generateCommitLintConfig,
-  generateESLintConfig,
   generateEditorConfig,
+  generateESLintConfig,
   installPeerDependencies,
   preparePackageJson,
 } from '../core'

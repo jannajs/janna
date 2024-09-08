@@ -1,5 +1,5 @@
-import { chalk, fs, glob } from 'zx'
 import consola from 'consola'
+import { chalk, fs, glob } from 'zx'
 
 function toDest(file: string) {
   return file.replace(/^src\//, 'dist/')

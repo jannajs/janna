@@ -1,7 +1,7 @@
 import process from 'node:process'
 
-import { fs, path } from 'zx'
 import mrmCore from 'mrm-core'
+import { fs, path } from 'zx'
 
 export function getProjectRootFilePath(filePath: string) {
   return path.join(process.cwd(), filePath)

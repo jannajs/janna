@@ -1,9 +1,9 @@
-import process from 'node:process'
 import path from 'node:path'
+import process from 'node:process'
 
-import { glob } from 'zx'
-import { FlatCompat } from '@eslint/eslintrc'
 import { GLOB_SRC } from '@antfu/eslint-config'
+import { FlatCompat } from '@eslint/eslintrc'
+import { glob } from 'zx'
 
 import type { Linter } from 'eslint'
 

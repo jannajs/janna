@@ -1,10 +1,10 @@
-import { path } from 'zx'
 import { mergeConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-
-import baseConfig from './vite.base.config'
+import { path } from 'zx'
 
 import type { UserConfig } from 'vite'
+
+import baseConfig from './vite.base.config'
 
 // https://vitejs.dev/config/
 export default mergeConfig(baseConfig, {

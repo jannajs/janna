@@ -1,5 +1,5 @@
-import { fs } from 'zx'
 import _isIgnored from '@commitlint/is-ignored'
+import { fs } from 'zx'
 
 /** ref: https://github.com/vitejs/vite-plugin-react-pages/issues/64#issuecomment-1222089552 */
 const isIgnored = ((_isIgnored as any).default
