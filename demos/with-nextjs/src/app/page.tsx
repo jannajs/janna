@@ -2,8 +2,8 @@
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import process from 'process'
 
+import Nav from '@/components/Nav'
 import Image from 'next/image'
-import Link from 'next/link'
 
 async function getData() {
   console.log('cwd', process.cwd())
@@ -55,9 +55,7 @@ export default async function Home() {
           priority
         />
       </div>
-      <div>
-        <Link href='/hello'>Hello</Link>
-      </div>
+      <Nav />
 
       <div className='mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left'>
         <a
