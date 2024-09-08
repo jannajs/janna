@@ -3,6 +3,7 @@
 import process from 'process'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 async function getData() {
   console.log('cwd', process.cwd())
@@ -53,6 +54,9 @@ export default async function Home() {
           height={37}
           priority
         />
+      </div>
+      <div>
+        <Link href='/hello'>Hello</Link>
       </div>
 
       <div className='mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left'>

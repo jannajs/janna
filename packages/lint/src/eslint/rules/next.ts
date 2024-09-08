@@ -73,6 +73,12 @@ export function getNextFlatConfigs(
     const nextRootDir = rootDirs.map((item) => {
       return path.join(mergedCwd, item)
     })
+    const nextPagesDir = nextRootDir.map((item) => {
+      return [
+        path.join(item, 'pages'),
+        path.join(item, 'src', 'pages'),
+      ]
+    }).flat()
 
     rules.push(...compat.config({
       extends: ['plugin:@next/next/core-web-vitals'],
@@ -80,7 +86,7 @@ export function getNextFlatConfigs(
         '@next/next/no-html-link-for-pages': [
           'error',
           // ref: https://github.com/vercel/next.js/issues/68752
-          nextRootDir,
+          nextPagesDir,
         ],
       },
     }).map((item) => {
