@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.20
+
+### Patch Changes
+
+- 🐛 fix: no-html-link-for-pages
+
 ## 3.0.0-next.19
 
 ### Patch Changes
