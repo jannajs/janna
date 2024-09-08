@@ -46,6 +46,7 @@
     "@commitlint/config-conventional": "catalog:",
     "@commitlint/types": "catalog:",
     "@eslint-react/eslint-plugin": "catalog:",
+    "@prettier/plugin-xml": "catalog:",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "eslint-plugin-react-hooks": "catalog:",

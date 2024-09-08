@@ -27,6 +27,7 @@
     "@jannajs/lint": "workspace:*",
     "@jannajs/tsconfig": "workspace:*",
     "@next/eslint-plugin-next": "15.0.0-canary.111",
+    "@prettier/plugin-xml": "catalog:",
     "@types/node": "^20.14.11",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
