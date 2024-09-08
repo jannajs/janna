@@ -80,7 +80,7 @@ export async function preparePackageJson() {
 
   packageJson.setScript('prepare', 'husky init')
     .setScript('lint', `${eslintCli} .`)
-    .setScript('lint:fix', `${eslintCli} .`)
+    .setScript('lint:fix', `${eslintCli} --fix .`)
 
   packageJson.set('lint-staged', {
     [`*`]: `${eslintCli} --fix`,
