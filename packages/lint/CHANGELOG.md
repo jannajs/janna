@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.0.0-next.19
+
+### Patch Changes
+
+- chore: update style
+
 ## 3.0.0-next.18
 
 ### Patch Changes
