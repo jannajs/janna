@@ -43,9 +43,9 @@ export function generateCommitLintConfig() {
 
 export async function installDevDependencies(deps: string[]) {
   if (isMonorepo) {
-    await $`ni -Dw ${deps}`
+    await $({ stdio: 'pipe' })`ni -Dw ${deps}`
   } else {
-    await $`ni -D ${deps}`
+    await $({ stdio: 'pipe' })`ni -D ${deps}`
   }
 }
 
