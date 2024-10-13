@@ -55,24 +55,24 @@
     "lint-staged": "catalog:"
   },
   "dependencies": {
-    "@antfu/ni": "^0.22.1",
-    "@commitlint/is-ignored": "^19.2.2",
+    "@antfu/ni": "^0.23.0",
+    "@commitlint/is-ignored": "catalog:",
     "commander": "^12.1.0",
     "consola": "^3.2.3",
     "mrm-core": "^7.1.22",
-    "zx": "^8.1.4"
+    "zx": "^8.1.9"
   },
   "devDependencies": {
     "@jannajs/tsconfig": "workspace:*",
-    "@types/eslint": "^9.6.0",
+    "@types/eslint": "^9.6.1",
     "@types/eslint__eslintrc": "^2.1.2",
     "@types/node": "^20.14.2",
     "rimraf": "^6.0.1",
-    "tsx": "^4.17.0",
+    "tsx": "^4.19.1",
     "typescript": "catalog:",
-    "vite": "^5.3.4",
-    "vite-plugin-dts": "^4.0.2",
-    "vite-tsconfig-paths": "^5.0.0"
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.4",
+    "vite-tsconfig-paths": "^5.0.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
