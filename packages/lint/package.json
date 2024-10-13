@@ -64,9 +64,10 @@
   },
   "devDependencies": {
     "@jannajs/tsconfig": "workspace:*",
+    "@next/eslint-plugin-next": "catalog:",
     "@types/eslint": "^9.6.1",
-    "@types/eslint__eslintrc": "^2.1.2",
     "@types/node": "^20.14.2",
+    "eslint-plugin-tailwindcss": "catalog:",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.1",
     "typescript": "catalog:",

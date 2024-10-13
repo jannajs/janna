@@ -1,9 +1,6 @@
 import { GLOB_SRC } from '@antfu/eslint-config'
-import { FlatCompat } from '@eslint/eslintrc'
 
 import type { Linter } from 'eslint'
-
-const compat = new FlatCompat()
 
 export interface GetTailwindFlatConfigsOptions {
   /**
@@ -19,7 +16,7 @@ export interface GetTailwindFlatConfigsOptions {
   }
 }
 
-export function getTailwindFlatConfigs(
+export async function getTailwindFlatConfigs(
   options: GetTailwindFlatConfigsOptions = {},
 ) {
   const { tailwind } = options
@@ -31,26 +28,29 @@ export function getTailwindFlatConfigs(
   }
 
   if (typeof tailwind === 'object') {
-    rules.push(...compat.config({
-      // eslint-plugin-tailwindcss
-      extends: ['plugin:tailwindcss/recommended'],
-      rules: {
-        'tailwindcss/no-custom-classname': 'off',
-        'tailwindcss/migration-from-tailwind-2': 'off',
-      },
-    }).map((item) => {
+    const eslintPluginTailwindCSS = await import('eslint-plugin-tailwindcss')
+    const files = tailwind.dirs.filter(Boolean).map((dirItem) => {
+      if (dirItem === '.') {
+        return GLOB_SRC
+      }
+
+      // html 格式需要等到 @angular-eslint/template-parser 适配
+      return `${dirItem}/${GLOB_SRC}`
+    })
+
+    rules.push(...eslintPluginTailwindCSS.configs['flat/recommended'].map((item) => {
       return {
         ...item,
-        files: tailwind.dirs.filter(Boolean).map((dirItem) => {
-          if (dirItem === '.') {
-            return GLOB_SRC
-          }
-
-          // html 格式需要等到 @angular-eslint/template-parser 适配
-          return `${dirItem}/${GLOB_SRC}`
-        }),
-      } satisfies Linter.Config
+        files,
+      }
     }))
+    rules.push({
+      name: 'janna/tailwind',
+      files,
+      rules: {
+        'tailwindcss/no-custom-classname': 'off',
+      },
+    })
     return rules
   }
 

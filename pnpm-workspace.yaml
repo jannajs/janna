@@ -17,3 +17,5 @@ catalog:
   husky: ^9.1.6
   lint-staged: ^15.2.10
   typescript: ^5.5.4
+  eslint-plugin-tailwindcss: ^3.17.5
+  '@next/eslint-plugin-next': 15.0.0-canary.187

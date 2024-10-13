@@ -2,12 +2,9 @@ import path from 'node:path'
 import process from 'node:process'
 
 import { GLOB_SRC } from '@antfu/eslint-config'
-import { FlatCompat } from '@eslint/eslintrc'
 import { glob } from 'zx'
 
 import type { Linter } from 'eslint'
-
-const compat = new FlatCompat()
 
 /**
  * ref: https://github.com/vercel/next.js/blob/fe7322650b407a44a1900ef1ef09d19ca4c56e99/packages/eslint-plugin-next/src/utils/get-root-dirs.ts#L7
@@ -45,7 +42,7 @@ export interface GetNextFlatConfigsOptions {
   }
 }
 
-export function getNextFlatConfigs(
+export async function getNextFlatConfigs(
   options: GetNextFlatConfigsOptions = {},
 ) {
   const { next } = options
@@ -73,38 +70,26 @@ export function getNextFlatConfigs(
     const nextRootDir = rootDirs.map((item) => {
       return path.join(mergedCwd, item)
     })
-    const nextPagesDir = nextRootDir.map((item) => {
-      return [
-        path.join(item, 'pages'),
-        path.join(item, 'src', 'pages'),
-      ]
-    }).flat()
 
-    rules.push(...compat.config({
-      extends: ['plugin:@next/next/core-web-vitals'],
-      rules: {
-        '@next/next/no-html-link-for-pages': [
-          'error',
-          // ref: https://github.com/vercel/next.js/issues/68752
-          nextPagesDir,
-        ],
+    const eslintPluginNext = await import('@next/eslint-plugin-next')
+    rules.push({
+      ...eslintPluginNext.configs.recommended,
+      plugins: {
+        '@next/next': eslintPluginNext,
       },
-    }).map((item) => {
-      return {
-        ...item,
-        settings: {
-          next: {
-            rootDir: nextRootDir,
-          },
+      name: 'janna/next',
+      settings: {
+        next: {
+          rootDir: nextRootDir,
         },
-        files: rootDirs.map((dirItem) => {
-          if (dirItem === '.') {
-            return GLOB_SRC
-          }
-          return `${dirItem}/${GLOB_SRC}`
-        }),
-      } satisfies Linter.Config
-    }))
+      },
+      files: rootDirs.map((dirItem) => {
+        if (dirItem === '.') {
+          return GLOB_SRC
+        }
+        return `${dirItem}/${GLOB_SRC}`
+      }),
+    })
     return rules
   }
 
