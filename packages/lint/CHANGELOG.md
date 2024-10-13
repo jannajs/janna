@@ -1,5 +1,37 @@
 # @jannajs/lint
 
+## 3.0.0
+
+### Major Changes
+
+- 46d7e43: Migrate to eslint flat config
+
+### Minor Changes
+
+- 4a6ce0d: 📦 refactor: replace eslint-plugin-react with @eslint-react/eslint-plugin
+
+### Patch Changes
+
+- f5863fd: 🐛 fix: detect stylistic
+- 94eb1fc: feat: no prettier and support svg format
+- 2b88c54: 🐛 fix: preparePackageJson with prettier
+- 91495ab: 🐛 fix: support next rootDir config
+- 126a677: ✨ feat: getPrettierSrcFlatConfigs
+- e6d105c: 📦 refactor: unify react rules
+- 143741e: ✨ feat: support isInEditorEnv
+- a50a25b: feat: update deps
+- bdae76d: 🐛 fix: style prefix rules
+- 4a02121: ✨ feat: support prettier and polish lint
+- 276723e: 🐛 fix: downgrade eslint to v8
+- 6b8fef5: 📦 refactor: external and esm support only
+- 3717749: chore: update style
+- 5c6f304: 🐛 fix: no-html-link-for-pages
+- 0a05e7a: chore: update deps
+- d57c067: fix conflict and update @antfu/eslint-config
+- f08eb81: 🐛 fix: override rules with prettier
+- 3898cf5: 🐛 fix: eslint file name
+- a954965: 🐛 fix: use next tailwind directly
+
 ## 3.0.0-next.20
 
 ### Patch Changes
