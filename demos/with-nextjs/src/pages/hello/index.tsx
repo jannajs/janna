@@ -123,7 +123,6 @@ export default function Hello() {
   )
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const getServerSideProps: GetServerSideProps = async () => {
   console.log('cwd', process.cwd())
   return {

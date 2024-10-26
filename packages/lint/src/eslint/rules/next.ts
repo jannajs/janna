@@ -6,6 +6,34 @@ import { glob } from 'zx'
 
 import type { Linter } from 'eslint'
 
+const appRouterExportNames = [
+  // ref: https://nextjs.org/docs/app/api-reference/functions
+  'generateImageMetadata',
+  'metadata',
+  'generateMetadata',
+  'generateStaticParams',
+  'viewport',
+  'generateViewport',
+
+  // ref: https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config
+  'experimental_ppr',
+  'dynamic',
+  'dynamicParams',
+  'revalidate',
+  'fetchCache',
+  'runtime',
+  'preferredRegion',
+  'maxDuration',
+]
+
+// ref: https://nextjs.org/docs/app/api-reference/functions
+const pagesRouterExportNames = [
+  'getInitialProps',
+  'getServerSideProps',
+  'getStaticPaths',
+  'getStaticProps',
+]
+
 /**
  * ref: https://github.com/vercel/next.js/blob/fe7322650b407a44a1900ef1ef09d19ca4c56e99/packages/eslint-plugin-next/src/utils/get-root-dirs.ts#L7
  */
@@ -72,6 +100,13 @@ export async function getNextFlatConfigs(
     })
 
     const eslintPluginNext = await interopDefault(import('@next/eslint-plugin-next'))
+    const files = rootDirs.map((dirItem) => {
+      if (dirItem === '.') {
+        return GLOB_SRC
+      }
+      return `${dirItem}/${GLOB_SRC}`
+    })
+
     rules.push({
       ...eslintPluginNext.configs.recommended,
       plugins: {
@@ -83,12 +118,22 @@ export async function getNextFlatConfigs(
           rootDir: nextRootDir,
         },
       },
-      files: rootDirs.map((dirItem) => {
-        if (dirItem === '.') {
-          return GLOB_SRC
-        }
-        return `${dirItem}/${GLOB_SRC}`
-      }),
+      files,
+    })
+    rules.push({
+      files,
+      name: 'janna/next/react-refresh',
+      rules: {
+        'react-refresh/only-export-components': [
+          'warn',
+          {
+            allowExportNames: [
+              ...appRouterExportNames,
+              ...pagesRouterExportNames,
+            ],
+          },
+        ],
+      },
     })
     return rules
   }

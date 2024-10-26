@@ -35,6 +35,7 @@
     "eslint-plugin-react-refresh": "catalog:",
     "eslint-plugin-tailwindcss": "catalog:",
     "husky": "catalog:",
+    "jiti": "^2.3.3",
     "lint-staged": "catalog:",
     "turbo": "^2.1.3",
     "typescript": "catalog:"
