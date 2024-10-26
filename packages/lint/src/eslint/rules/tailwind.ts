@@ -1,4 +1,4 @@
-import { GLOB_SRC } from '@antfu/eslint-config'
+import { GLOB_SRC, interopDefault } from '@antfu/eslint-config'
 
 import type { Linter } from 'eslint'
 
@@ -28,7 +28,7 @@ export async function getTailwindFlatConfigs(
   }
 
   if (typeof tailwind === 'object') {
-    const eslintPluginTailwindCSS = await import('eslint-plugin-tailwindcss')
+    const eslintPluginTailwindCSS = await interopDefault(import('eslint-plugin-tailwindcss'))
     const files = tailwind.dirs.filter(Boolean).map((dirItem) => {
       if (dirItem === '.') {
         return GLOB_SRC

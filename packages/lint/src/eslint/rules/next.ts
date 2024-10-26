@@ -1,7 +1,7 @@
 import path from 'node:path'
 import process from 'node:process'
 
-import { GLOB_SRC } from '@antfu/eslint-config'
+import { GLOB_SRC, interopDefault } from '@antfu/eslint-config'
 import { glob } from 'zx'
 
 import type { Linter } from 'eslint'
@@ -71,7 +71,7 @@ export async function getNextFlatConfigs(
       return path.join(mergedCwd, item)
     })
 
-    const eslintPluginNext = await import('@next/eslint-plugin-next')
+    const eslintPluginNext = await interopDefault(import('@next/eslint-plugin-next'))
     rules.push({
       ...eslintPluginNext.configs.recommended,
       plugins: {
