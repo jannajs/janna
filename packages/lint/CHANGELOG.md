@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.1.0
+
+### Minor Changes
+
+- ✨ feat: support janna/next/react-fresh
+
 ## 3.0.0
 
 ### Major Changes
