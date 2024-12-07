@@ -56,11 +56,12 @@
   },
   "dependencies": {
     "@antfu/ni": "^0.23.0",
+    "@commander-js/extra-typings": "catalog:",
     "@commitlint/is-ignored": "catalog:",
-    "commander": "^12.1.0",
+    "commander": "catalog:",
     "consola": "^3.2.3",
     "mrm-core": "^7.1.22",
-    "zx": "^8.1.9"
+    "zx": "catalog:"
   },
   "devDependencies": {
     "@jannajs/tsconfig": "workspace:*",
@@ -69,11 +70,11 @@
     "@types/node": "^20.14.2",
     "eslint-plugin-tailwindcss": "catalog:",
     "rimraf": "^6.0.1",
-    "tsx": "^4.19.1",
+    "tsx": "catalog:",
     "typescript": "catalog:",
-    "vite": "^5.4.8",
-    "vite-plugin-dts": "^4.2.4",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vite-tsconfig-paths": "catalog:"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

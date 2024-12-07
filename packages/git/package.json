@@ -1,0 +1,32 @@
+{
+  "name": "@jannajs/git",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "bin": "dist/cli/index.js",
+  "scripts": {
+    "build": "tsc && vite build --config vite.lib.config.ts"
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "catalog:",
+    "c12": "^2.0.1",
+    "commander": "catalog:",
+    "consola": "^3.2.3",
+    "zod": "^3.23.8",
+    "zx": "catalog:"
+  },
+  "devDependencies": {
+    "@jannajs/tsconfig": "workspace:*",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vite-plugin-dts": "catalog:",
+    "vite-tsconfig-paths": "catalog:"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
+}
