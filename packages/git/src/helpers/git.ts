@@ -2,13 +2,18 @@ import { $ } from 'zx'
 
 import type { BranchRules } from 'src/config/load'
 
-export function execMergeGitMsg(msg: string) {
-  const reg = /Merge branch '(.+?)'/i
-  return reg.exec(msg)
+export function execMergeMsg(msg: string, extraRules: RegExp[] = []) {
+  const rules = [/Merge branch '(.+?)'/i, ...extraRules]
+  for (const rule of rules) {
+    const match = rule.exec(msg)
+    if (match) {
+      return match[1]
+    }
+  }
 }
 
 export function ensureMergeFromBranch(msg: string) {
-  const result = execMergeGitMsg(msg)
+  const result = execMergeMsg(msg)
   if (!result) {
     throw new Error('Parse merge from branch failed')
   }
