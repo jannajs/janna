@@ -2,10 +2,20 @@
   "name": "@jannajs/git-guards",
   "type": "module",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
+  "author": "Yuns <yuns.xie@qq.com>",
+  "license": "MIT",
+  "funding": [
+    "https://opencollective.com/yuns",
+    "https://afdian.net/@yunslove"
+  ],
+  "homepage": "https://github.com/jannajs/janna/blob/master/packages/git-guards/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jannajs/janna",
+    "directory": "packages/git-guards"
+  },
+  "bugs": "https://github.com/jannajs/janna/issues",
+  "keywords": ["git", "git-guards"],
   "main": "dist/index.js",
   "bin": "dist/cli/index.js",
   "files": [
