@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
+  "main": "dist/index.js",
   "bin": "dist/cli/index.js",
   "scripts": {
     "build": "tsc && vite build --config vite.lib.config.ts"
@@ -19,7 +20,6 @@
     "zx": "catalog:"
   },
   "devDependencies": {
-    "@jannajs/tsconfig": "workspace:*",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vite": "catalog:",

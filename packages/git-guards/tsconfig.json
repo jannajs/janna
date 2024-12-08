@@ -2,6 +2,9 @@
   "extends": "@jannajs/tsconfig/node.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "@jannajs/git-guards": ["./src"]
+    },
     "outDir": "./dist"
   },
   "include": ["src"],

@@ -3,11 +3,15 @@ import { $ } from 'zx'
 import type { BranchRules } from 'src/config/load'
 
 export function execMergeMsg(msg: string, extraRules: RegExp[] = []) {
-  const rules = [/Merge branch '(.+?)'/i, ...extraRules]
+  const rules = [
+    /Merge branch '(.+?)'/i,
+    /Merge remote-tracking branch '(.+?)'/,
+    ...extraRules,
+  ]
   for (const rule of rules) {
     const match = rule.exec(msg)
     if (match) {
-      return match[1]
+      return match
     }
   }
 }

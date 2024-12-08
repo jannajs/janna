@@ -13,6 +13,7 @@ export default mergeConfig(baseConfig, {
     minify: false,
     lib: {
       entry: [
+        path.resolve(__dirname, 'src/index.ts'),
         path.resolve(__dirname, 'src/cli/index.ts'),
       ],
     },

@@ -9,11 +9,11 @@ import { guardFromOtherBranches } from './other-branches'
 export const mergeGuardsSchema = z.object({
   /** 如果默认的提交信息解析不够完善可通过该配置扩展，表达式中的第一个分组需要匹配分支名称 */
   extraExtractRules: z.array(z.instanceof(RegExp)).default([]),
-  /** 🚫 禁止从符合该规则的分支合并 */
+  /** 🚫 禁止从符合该规则的分支合并，默认禁用 test 分支 */
   blacklist: z.array(z.string().or(
     // ref: https://github.com/colinhacks/zod/issues/2735#issuecomment-1729976740
     z.instanceof(RegExp),
-  )).default([]),
+  )).default(['test', 'origin/test']),
   /** 🚫 禁止创建当前分支的合并提交 */
   disabledFromCurrentBranch: z.boolean().default(true),
   /** ✅ 符合该规则的分支不受合并守卫限制 */
