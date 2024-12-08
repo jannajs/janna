@@ -3,7 +3,7 @@
   "type": "module",
   "packageManager": "pnpm@9.12.1",
   "scripts": {
-    "build": "turbo run build --filter=@jannajs/lint",
+    "build": "turbo run build --filter=@jannajs/lint --filter=@jannajs/git-guards",
     "dev": "turbo run dev --no-cache --parallel --continue",
     "lint": "eslint --flag unstable_ts_config .",
     "lint:fix": "eslint --flag unstable_ts_config --fix .",
