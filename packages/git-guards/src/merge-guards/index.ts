@@ -21,12 +21,13 @@ export const mergeGuardsSchema = z.object({
     // ref: https://github.com/colinhacks/zod/issues/2735#issuecomment-1729976740
     z.instanceof(RegExp),
   )).default([]),
-})
+}).default({})
 
 export type MergeGuardsOptions = z.output<typeof mergeGuardsSchema>
 
 export async function mergeGuards(gitMsg: string, options: MergeGuardsOptions) {
   if (!execMergeMsg(gitMsg, options.extraExtractRules)) {
+    consola.debug('Normal message, skipped')
     return
   }
 

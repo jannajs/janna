@@ -21,7 +21,7 @@ function getDefaultConfig() {
 export async function loadJannaGitConfig() {
   const defaults = getDefaultConfig()
   const { config } = await loadConfig({
-    name: 'janna-git',
+    name: 'git-guards',
     defaults,
     rcFile: false,
   })

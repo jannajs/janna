@@ -6,7 +6,7 @@ import consola from 'consola'
 import { loadJannaGitConfig } from '../config/load'
 import { mergeGuards } from '../merge-guards'
 
-program.command('merge-guards').requiredOption('-m, --message <msg>').action(async (options) => {
+program.command('merge').requiredOption('-m, --message <msg>').action(async (options) => {
   const gitConfig = await loadJannaGitConfig()
 
   try {
