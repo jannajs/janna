@@ -1,7 +1,7 @@
 {
   "name": "@jannajs/git-guards",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Yuns <yuns.xie@qq.com>",
   "license": "MIT",
   "funding": [
@@ -15,7 +15,10 @@
     "directory": "packages/git-guards"
   },
   "bugs": "https://github.com/jannajs/janna/issues",
-  "keywords": ["git", "git-guards"],
+  "keywords": [
+    "git",
+    "git-guards"
+  ],
   "main": "dist/index.js",
   "bin": "dist/cli/index.js",
   "files": [
