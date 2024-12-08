@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.1.1
+
+### Patch Changes
+
+- feat: new @jannajs/git-guards
+
 ## 3.1.0
 
 ### Minor Changes
