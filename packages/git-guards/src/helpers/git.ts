@@ -5,7 +5,7 @@ import type { BranchRules } from 'src/config/load'
 export function execMergeMsg(msg: string, extraRules: RegExp[] = []) {
   const rules = [
     /Merge branch '(.+?)'/i,
-    /Merge remote-tracking branch '(.+?)'/,
+    /Merge remote-tracking branch '(.+?)'/i,
     ...extraRules,
   ]
   for (const rule of rules) {
