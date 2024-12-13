@@ -23,8 +23,7 @@ $ npm i -D @jannajs/git-guards
 在 `prepare-commit-msg` 中添加如下命令：
 
 ```sh
-msg=`cat $1`
-npx --no @jannajs/git-guards merge -m "$msg"
+npx --no @jannajs/git-guards merge -f "$1"
 ```
 
 ### 配置
