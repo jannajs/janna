@@ -2,15 +2,26 @@ import process from 'node:process'
 
 import { program } from '@commander-js/extra-typings'
 import consola from 'consola'
+import { fs, path } from 'zx'
 
 import { loadJannaGitConfig } from '../config/load'
 import { mergeGuards } from '../merge-guards'
 
-program.command('merge').requiredOption('-m, --message <msg>').action(async (options) => {
+program.command('merge').requiredOption('-f, --file <file>').action(async (options) => {
   const gitConfig = await loadJannaGitConfig()
+  const {
+    // .git/COMMIT_EDITMSG
+    // .git/MERGE_MSG
+    file,
+  } = options
+
+  const gitMessage = await fs.readFile(path.join(process.cwd(), file), 'utf-8')
 
   try {
-    await mergeGuards(options.message, gitConfig.mergeGuards)
+    await mergeGuards(
+      gitMessage,
+      gitConfig.mergeGuards,
+    )
   } catch (err) {
     consola.error(err)
     consola.info('╭──────────────────────────────────────')
