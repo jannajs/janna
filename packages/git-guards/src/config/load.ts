@@ -15,6 +15,7 @@ export type JannaGitConfigOutput = z.output<typeof jannaGitSchema>
 export async function loadJannaGitConfig() {
   const { config } = await loadConfig<JannaGitConfigOutput>({
     name: 'git-guards',
+    defaultConfig: jannaGitSchema.parse({}),
     rcFile: false,
   })
 
