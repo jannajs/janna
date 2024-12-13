@@ -24,6 +24,7 @@
     "@commitlint/config-conventional": "catalog:",
     "@commitlint/types": "catalog:",
     "@eslint-react/eslint-plugin": "catalog:",
+    "@jannajs/git-guards": "workspace:*",
     "@jannajs/lint": "workspace:*",
     "@jannajs/tsconfig": "workspace:*",
     "@next/eslint-plugin-next": "catalog:",

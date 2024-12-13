@@ -1,0 +1,1 @@
+npx --no @jannajs/git-guards merge -f "$1"
