@@ -19,13 +19,13 @@
     "git",
     "git-guards"
   ],
-  "main": "dist/index.js",
-  "bin": "dist/cli/index.js",
+  "main": "dist/index.mjs",
+  "bin": "dist/cli/index.mjs",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc && vite build --config vite.lib.config.ts"
+    "build": "tsc && unbuild"
   },
   "dependencies": {
     "@commander-js/extra-typings": "catalog:",
@@ -38,9 +38,7 @@
   "devDependencies": {
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
-    "vite-plugin-dts": "catalog:",
-    "vite-tsconfig-paths": "catalog:"
+    "unbuild": "^3.5.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
