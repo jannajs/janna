@@ -76,7 +76,7 @@ export async function preparePackageJson() {
   const packageJson = mrmCore
     .packageJson()
 
-  const eslintCli = 'eslint --flag unstable_ts_config'
+  const eslintCli = 'eslint'
 
   packageJson.setScript('prepare', 'husky')
     .setScript('lint', `${eslintCli} .`)

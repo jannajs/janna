@@ -2,10 +2,11 @@ import antfu from '@antfu/eslint-config'
 
 import { isInEditorEnv } from '../utils'
 import { getNextFlatConfigs } from './rules/next'
-import { getPrettierSrcFlatConfigs, type GetPrettierSrcFlatConfigsOptions } from './rules/prettier-src'
+import { getPrettierSrcFlatConfigs } from './rules/prettier-src'
 import { getTailwindFlatConfigs } from './rules/tailwind'
 
 import type { GetNextFlatConfigsOptions } from './rules/next'
+import type { GetPrettierSrcFlatConfigsOptions } from './rules/prettier-src'
 import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 
 export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions, GetPrettierSrcFlatConfigsOptions {
