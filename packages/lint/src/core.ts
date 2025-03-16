@@ -14,31 +14,31 @@ import type packageJson from '../package.json'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-function copyPackageFile(fileName: string, renameTo = fileName) {
+function copyTemplateFile(fileName: string, renameTo = fileName) {
   fs.copyFileSync(
-    path.join(__dirname, 'templates', fileName),
+    path.join(__dirname, '../templates', fileName),
     `${process.cwd()}/${renameTo}`,
   )
 }
 
 export function generateEditorConfig() {
   const configFileName = '.editorconfig'
-  copyPackageFile(configFileName)
+  copyTemplateFile(configFileName)
 }
 
 export function generatePrettierConfig() {
   const configFileName = '.prettierrc.mjs'
-  copyPackageFile(configFileName)
+  copyTemplateFile(configFileName)
 }
 
 export function generateESLintConfig() {
   const configFileName = 'eslint.config.ts'
-  copyPackageFile(configFileName)
+  copyTemplateFile(configFileName)
 }
 
 export function generateCommitLintConfig() {
   const configFileName = 'commitlint.config.ts'
-  copyPackageFile(configFileName)
+  copyTemplateFile(configFileName)
 }
 
 export async function installDevDependencies(deps: string[]) {

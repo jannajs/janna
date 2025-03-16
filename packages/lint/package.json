@@ -18,26 +18,27 @@
   "exports": {
     "./eslint": {
       "types": "./dist/eslint/index.d.ts",
-      "import": "./dist/eslint/index.js",
-      "default": "./dist/eslint/index.js"
+      "import": "./dist/eslint/index.mjs",
+      "default": "./dist/eslint/index.mjs"
     },
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     },
     "./*": "./*"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "dist/index.d.ts",
-  "bin": "bin/cli.js",
+  "bin": "bin/cli.mjs",
   "files": [
     "bin",
-    "dist"
+    "dist",
+    "templates"
   ],
   "scripts": {
-    "build": "tsc && vite build --config vite.lib.config.ts && tsx ./scripts/copy.ts",
+    "build": "tsc && unbuild",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "peerDependencies": {
@@ -72,9 +73,7 @@
     "rimraf": "^6.0.1",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
-    "vite-plugin-dts": "catalog:",
-    "vite-tsconfig-paths": "catalog:"
+    "unbuild": "^3.5.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
