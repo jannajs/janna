@@ -1,5 +1,18 @@
 # @jannajs/git-guards
 
+## 0.0.5
+
+### Patch Changes
+
+- dc4f63f: refactor to unbuild and update deps
+- 🐛 fix: git-guard with origin
+
+## 0.0.5-next.1
+
+### Patch Changes
+
+- 🐛 fix: git-guard with origin
+
 ## 0.0.5-next.0
 
 ### Patch Changes

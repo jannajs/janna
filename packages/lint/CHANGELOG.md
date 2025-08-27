@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.1.2
+
+### Patch Changes
+
+- dc4f63f: refactor to unbuild and update deps
+
 ## 3.1.2-next.0
 
 ### Patch Changes
