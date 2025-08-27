@@ -23,7 +23,7 @@ $ npm i -D @jannajs/git-guards
 在 `commit-msg` 首行添加如下命令：
 
 ```sh
-npx --no @jannajs/git-guards merge -f "$1"
+npx --no -- @jannajs/git-guards merge -f "$1"
 ```
 
 ### 配置
