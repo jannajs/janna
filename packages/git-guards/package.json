@@ -20,6 +20,7 @@
     "git-guards"
   ],
   "main": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "bin": "dist/cli/index.mjs",
   "files": [
     "dist"
