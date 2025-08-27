@@ -9,8 +9,8 @@ export async function guardFromCurrentBranch(gitMsg: string, remotes: string[] =
       ...remotes.map((item) => {
         return `${item}/${currentBranch}`
       }),
-      mergeFromBranch,
-    ].includes(currentBranch)) {
-    throw new Error(`Unexpected merge from the brach: ${mergeFromBranch}`)
+      currentBranch,
+    ].includes(mergeFromBranch)) {
+    throw new Error(`Unexpected merge from the branch: ${mergeFromBranch}`)
   }
 }
