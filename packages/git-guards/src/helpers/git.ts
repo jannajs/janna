@@ -1,6 +1,6 @@
 import { $ } from 'zx'
 
-import type { BranchRules } from 'src/config/load'
+import type { BranchRules } from '../config/load'
 
 export function execMergeMsg(msg: string, extraRules: RegExp[] = []) {
   const rules = [

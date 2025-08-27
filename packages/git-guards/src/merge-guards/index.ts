@@ -7,6 +7,7 @@ import { inWhitelist } from './helpers'
 import { guardFromOtherBranches } from './other-branches'
 
 export const mergeGuardsSchema = z.object({
+  remotes: z.array(z.string()).default(['origin']),
   /** 如果默认的提交信息解析不够完善可通过该配置扩展，表达式中的第一个分组需要匹配分支名称 */
   extraExtractRules: z.array(z.instanceof(RegExp)).default([]),
   /** 🚫 禁止从符合该规则的分支合并，默认禁用 test 分支 */
@@ -43,6 +44,6 @@ export async function mergeGuards(gitMsg: string, options: MergeGuardsOptions) {
   await guardFromOtherBranches(gitMsg, options)
 
   if (options.disabledFromCurrentBranch) {
-    await guardFromCurrentBranch(gitMsg)
+    await guardFromCurrentBranch(gitMsg, options.remotes)
   }
 }

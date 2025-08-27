@@ -20,7 +20,7 @@ $ npm i -D @jannajs/git-guards
 
 ### 使用
 
-在 `prepare-commit-msg` 中添加如下命令：
+在 `commit-msg` 首行添加如下命令：
 
 ```sh
 npx --no @jannajs/git-guards merge -f "$1"
