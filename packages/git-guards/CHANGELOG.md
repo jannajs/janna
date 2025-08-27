@@ -1,5 +1,11 @@
 # @jannajs/git-guards
 
+## 0.0.6
+
+### Patch Changes
+
+- 🐛 fix: guardFromCurrentBranch
+
 ## 0.0.5
 
 ### Patch Changes
