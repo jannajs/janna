@@ -1,5 +1,11 @@
 # @jannajs/git-guards
 
+## 0.0.7
+
+### Patch Changes
+
+- 🐛 fix: add types field
+
 ## 0.0.6
 
 ### Patch Changes
