@@ -1,14 +1,12 @@
 import antfu, { isInEditorEnv } from '@antfu/eslint-config'
 
 import { getNextFlatConfigs } from './rules/next'
-import { getPrettierSrcFlatConfigs } from './rules/prettier-src'
 import { getTailwindFlatConfigs } from './rules/tailwind'
 
 import type { GetNextFlatConfigsOptions } from './rules/next'
-import type { GetPrettierSrcFlatConfigsOptions } from './rules/prettier-src'
 import type { GetTailwindFlatConfigsOptions } from './rules/tailwind'
 
-export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions, GetPrettierSrcFlatConfigsOptions {
+export interface JannaOptions extends GetNextFlatConfigsOptions, GetTailwindFlatConfigsOptions {
 }
 
 // 基于 @antfu/eslint-config 定制功能
@@ -17,24 +15,22 @@ export default async function janna(
   options: Parameters<typeof antfu>[0] & JannaOptions = {},
   ...userConfigs: Parameters<typeof antfu>[1][]
 ) {
-  const { next, tailwind, prettierSrc, ...antfuOptions } = options
+  const { next, tailwind, ...antfuOptions } = options
 
   const result = await antfu(
     {
-      stylistic: prettierSrc
-        ? false
-        : {
-            overrides: {
-              'curly': ['error', 'all'],
-              /** 自定义重写 */
-              'style/brace-style': ['error', '1tbs'],
-              // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
-              'style/arrow-parens': ['error', 'always'],
-              // 能使用单引号的地方都使用单引号
-              'style/jsx-quotes': ['error', 'prefer-single'],
-              'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
-            },
-          },
+      stylistic: {
+        overrides: {
+          'curly': ['error', 'all'],
+          /** 自定义重写 */
+          'style/brace-style': ['error', '1tbs'],
+          // 总是添加小括号，方便扩展入参，后续不用手动添加小括号
+          'style/arrow-parens': ['error', 'always'],
+          // 能使用单引号的地方都使用单引号
+          'style/jsx-quotes': ['error', 'prefer-single'],
+          'style/jsx-self-closing-comp': isInEditorEnv() ? 'off' : 'warn',
+        },
+      },
       react: {
         overrides: {
           /** 自定义重写 */
@@ -72,7 +68,6 @@ export default async function janna(
     },
     getNextFlatConfigs({ next }),
     getTailwindFlatConfigs({ tailwind }),
-    getPrettierSrcFlatConfigs({ prettierSrc }),
     {
       // 交互优化
       rules: {
