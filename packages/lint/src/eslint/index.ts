@@ -1,6 +1,5 @@
-import antfu from '@antfu/eslint-config'
+import antfu, { isInEditorEnv } from '@antfu/eslint-config'
 
-import { isInEditorEnv } from '../utils'
 import { getNextFlatConfigs } from './rules/next'
 import { getPrettierSrcFlatConfigs } from './rules/prettier-src'
 import { getTailwindFlatConfigs } from './rules/tailwind'

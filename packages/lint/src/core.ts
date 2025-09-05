@@ -7,7 +7,7 @@ import husky from 'husky'
 import mrmCore from 'mrm-core'
 import { $, fs, path } from 'zx'
 
-import { getProjectRootFilePath, isMonorepo } from './utils'
+import { detectIsMonorepo, getProjectRootFilePath } from './utils'
 
 import type packageJson from '../package.json'
 
@@ -42,7 +42,7 @@ export function generateCommitLintConfig() {
 }
 
 export async function installDevDependencies(deps: string[]) {
-  if (isMonorepo) {
+  if (detectIsMonorepo()) {
     await $({ stdio: 'inherit' })`ni -Dw ${deps}`
   } else {
     await $({ stdio: 'inherit' })`ni -D ${deps}`
