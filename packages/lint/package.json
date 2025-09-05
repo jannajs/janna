@@ -56,11 +56,11 @@
     "lint-staged": "catalog:"
   },
   "dependencies": {
-    "@antfu/ni": "^0.23.0",
+    "@antfu/ni": "25.0.0",
     "@commander-js/extra-typings": "catalog:",
     "@commitlint/is-ignored": "catalog:",
     "commander": "catalog:",
-    "consola": "^3.2.3",
+    "consola": "^3.4.2",
     "mrm-core": "^7.1.22",
     "zx": "catalog:"
   },

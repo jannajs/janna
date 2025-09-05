@@ -1,7 +1,7 @@
 {
   "name": "janna-monorepo",
   "type": "module",
-  "packageManager": "pnpm@9.12.1",
+  "packageManager": "pnpm@10.15.1",
   "scripts": {
     "build": "turbo run build --filter=@jannajs/lint --filter=@jannajs/git-guards",
     "dev": "turbo run dev --no-cache --parallel --continue",
@@ -11,10 +11,6 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "prepare": "husky"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "dependencies": {
     "@changesets/cli": "^2.27.9"
   },
