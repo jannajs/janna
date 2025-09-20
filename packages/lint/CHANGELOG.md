@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.1.4
+
+### Patch Changes
+
+- 2735d38: 🔧 chore: update peer dependency lint-staged to \*
+
 ## 3.1.3
 
 ### Patch Changes
