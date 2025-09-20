@@ -12,7 +12,8 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
-    "changeset": "changeset"
+    "changeset": "changeset",
+    "changeset:publish": "changeset publish"
   },
   "dependencies": {
     "@changesets/cli": "^2.27.9"
