@@ -1,5 +1,11 @@
 # @jannajs/lint
 
+## 3.1.3
+
+### Patch Changes
+
+- a94cd75: Polish emojify and improve dx
+
 ## 3.1.2
 
 ### Patch Changes

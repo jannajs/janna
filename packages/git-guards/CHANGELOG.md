@@ -1,5 +1,11 @@
 # @jannajs/git-guards
 
+## 0.0.8
+
+### Patch Changes
+
+- a94cd75: Polish emojify and improve dx
+
 ## 0.0.7
 
 ### Patch Changes
