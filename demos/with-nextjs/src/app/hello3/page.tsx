@@ -2,8 +2,9 @@
 // eslint-disable-next-line unicorn/prefer-node-protocol
 import process from 'process'
 
-import Nav from '@/components/Nav'
 import Image from 'next/image'
+
+import Nav from '@/components/Nav'
 
 async function getData() {
   console.log('cwd', process.cwd())

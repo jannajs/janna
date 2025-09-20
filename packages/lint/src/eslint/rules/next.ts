@@ -1,7 +1,7 @@
 import path from 'node:path'
 import process from 'node:process'
 
-import { GLOB_SRC, interopDefault } from '@antfu/eslint-config'
+import { ensurePackages, GLOB_SRC, interopDefault } from '@antfu/eslint-config'
 import { glob } from 'zx'
 
 import type { Linter } from 'eslint'
@@ -81,6 +81,11 @@ export async function getNextFlatConfigs(
     return rules
   }
 
+  await ensurePackages([
+    '@next/eslint-plugin-next',
+    'eslint-plugin-react-refresh',
+  ])
+
   if (typeof next === 'object') {
     const { rootDir, cwd } = next
 
@@ -99,7 +104,10 @@ export async function getNextFlatConfigs(
       return path.join(mergedCwd, item)
     })
 
-    const eslintPluginNext = await interopDefault(import('@next/eslint-plugin-next'))
+    const [eslintPluginNext, eslintPluginReactRefresh] = await Promise.all([
+      interopDefault(import('@next/eslint-plugin-next')),
+      interopDefault(import('eslint-plugin-react-refresh')),
+    ])
     const files = rootDirs.map((dirItem) => {
       if (dirItem === '.') {
         return GLOB_SRC
@@ -123,6 +131,9 @@ export async function getNextFlatConfigs(
     rules.push({
       files,
       name: 'janna/next/react-refresh',
+      plugins: {
+        'react-refresh': eslintPluginReactRefresh,
+      },
       rules: {
         'react-refresh/only-export-components': [
           'warn',
