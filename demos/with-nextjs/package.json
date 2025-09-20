@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "lint": "eslint .",
-    "build": "npm run lint && next build",
+    "typecheck": "tsc --noEmit",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {

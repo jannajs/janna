@@ -38,7 +38,8 @@
     "templates"
   ],
   "scripts": {
-    "build": "tsc && unbuild"
+    "typecheck": "tsc --noEmit",
+    "build": "unbuild"
   },
   "peerDependencies": {
     "@antfu/eslint-config": "catalog:",
