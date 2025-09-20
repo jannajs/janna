@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import process from 'node:process'
 
-import Nav from '@/components/Nav'
 import Image from 'next/image'
 
 import type { GetServerSideProps } from 'next'
+
+import Nav from '@/components/Nav'
 
 export default function Hello() {
   return (
