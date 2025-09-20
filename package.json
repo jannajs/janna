@@ -10,7 +10,8 @@
     "test": "vitest --run",
     "test:watch": "vitest",
     "clean": "turbo run clean && rm -rf node_modules",
-    "prepare": "husky"
+    "prepare": "husky",
+    "changeset": "changeset"
   },
   "dependencies": {
     "@changesets/cli": "^2.27.9"
