@@ -52,7 +52,7 @@
     "eslint-plugin-react-hooks": "catalog:",
     "eslint-plugin-react-refresh": "catalog:",
     "husky": "catalog:",
-    "lint-staged": "catalog:"
+    "lint-staged": "*"
   },
   "dependencies": {
     "@antfu/ni": "25.0.0",
