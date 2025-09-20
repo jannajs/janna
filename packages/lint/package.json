@@ -38,8 +38,7 @@
     "templates"
   ],
   "scripts": {
-    "build": "tsc && unbuild",
-    "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
+    "build": "tsc && unbuild"
   },
   "peerDependencies": {
     "@antfu/eslint-config": "catalog:",
