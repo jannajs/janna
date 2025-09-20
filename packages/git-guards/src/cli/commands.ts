@@ -15,7 +15,18 @@ program.command('merge').requiredOption('-f, --file <file>').action(async (optio
     file,
   } = options
 
-  const gitMessage = await fs.readFile(path.join(process.cwd(), file), 'utf-8')
+  if (!file) {
+    consola.error('Please provide the git message file with -f option')
+    process.exit(1)
+  }
+
+  let gitMessage = ''
+  try {
+    gitMessage = await fs.readFile(path.join(process.cwd(), file), 'utf-8')
+  } catch (err) {
+    consola.error(`Failed to read git message from file: ${file}`)
+    process.exit(1)
+  }
 
   try {
     await mergeGuards(
