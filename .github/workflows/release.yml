@@ -21,14 +21,14 @@ jobs:
       - name: Setup Node.js 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: lts/*
+          node-version: 20.x
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Packages
-        run: pnpm run build
+        run: pnpm -s run build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
@@ -38,5 +38,6 @@ jobs:
           publish: pnpm release
           commit: 'chore(release): publish'
         env:
+          HUSKY: 0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

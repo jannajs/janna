@@ -11,6 +11,7 @@
     "test:watch": "vitest",
     "clean": "turbo run clean && rm -rf node_modules",
     "prepare": "husky",
+    "typecheck": "tsc --noEmit",
     "changeset": "changeset"
   },
   "dependencies": {
