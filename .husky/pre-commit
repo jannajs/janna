@@ -1,1 +1,13 @@
-npx --no -- lint-staged
+npx --no -- lint-staged &
+pid_lint=$!
+
+pnpm typecheck &
+pid_type=$!
+
+wait $pid_lint
+r_lint=$?
+
+wait $pid_type
+r_type=$?
+
+if [ $r_lint -ne 0 ] || [ $r_type -ne 0 ]; then exit 1; fi
