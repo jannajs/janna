@@ -22,7 +22,7 @@ program.command('merge').requiredOption('-f, --file <file>').action(async (optio
 
   let gitMessage = ''
   try {
-    gitMessage = await fs.readFile(path.join(process.cwd(), file), 'utf-8')
+    gitMessage = await fs.readFile(path.resolve(file), 'utf-8')
   } catch (err) {
     consola.error(`Failed to read git message from file: ${file}`)
     process.exit(1)
