@@ -3,14 +3,21 @@ import { z } from 'zod'
 
 import { mergeGuardsSchema } from '../merge-guards'
 
+import type { MergeGuardsInput, MergeGuardsOptions } from '../merge-guards'
+
 export type BranchRules = (string | RegExp)[]
+
+export interface JannaGitConfigInput {
+  mergeGuards?: MergeGuardsInput
+}
+
+export interface JannaGitConfigOutput {
+  mergeGuards: MergeGuardsOptions
+}
 
 export const jannaGitSchema = z.object({
   mergeGuards: mergeGuardsSchema,
-})
-
-export type JannaGitConfigInput = z.input<typeof jannaGitSchema>
-export type JannaGitConfigOutput = z.output<typeof jannaGitSchema>
+}) satisfies z.ZodType<JannaGitConfigOutput, any, JannaGitConfigInput>
 
 export async function loadJannaGitConfig() {
   const { config } = await loadConfig<JannaGitConfigOutput>({
