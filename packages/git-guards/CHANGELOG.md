@@ -1,5 +1,11 @@
 # @jannajs/git-guards
 
+## 0.0.9
+
+### Patch Changes
+
+- 15ee5c6: fix: resolve absolute file paths in worktree environment; refactor schema types to explicit interfaces for preserved JSDoc in .d.ts
+
 ## 0.0.8
 
 ### Patch Changes
